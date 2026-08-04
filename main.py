@@ -1,13 +1,19 @@
+import os
 import random
 
 import discord
 from discord.ext import commands
 from discord import app_commands, Interaction
+from dotenv import load_dotenv
+
+load_dotenv()
+
+token = os.getenv('DISCORD_TOKEN')
 
 # 1496213896552513708 The Digital world
 # 1515429501239169104 Testing
 
-server_id = 1496213896552513708
+server_id = 1515429501239169104
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -81,4 +87,4 @@ async def printer(interaction: discord.Interaction, member: discord.Member):
     ]
     await interaction.response.send_message(random.choice(praise_messages))
 
-client.run('MTUzNDE2MTY5MzA5NjE1MzE0OA.GX-YGU.nDO0esPjROeRxkUxEeGc2UXW8VpKRcrVr2dxOQ')
+client.run(token)
