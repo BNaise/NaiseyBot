@@ -6,9 +6,12 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
-load_dotenv()
+from keep_alive import keep_alive
 
+load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
+
+keep_alive()
 
 # 1496213896552513708 The Digital world
 # 1515429501239169104 Testing
