@@ -6,17 +6,13 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
-from keep_alive import keep_alive
-
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
-
-keep_alive()
 
 # 1496213896552513708 The Digital world
 # 1515429501239169104 Testing
 
-server_id = 1515429501239169104
+server_id = 1496213896552513708
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -72,10 +68,10 @@ async def embeded(interaction: discord.Interaction):
 
 async def printer(interaction: discord.Interaction, member: discord.Member):
     hug_messages = [
-        f"{interaction.user.mention} tightly hugs {member.mention} :people_hugging:<:kralsei_hug:1534235398337855588><:kralsei_hug_blushing:1534235893668249822>",
-        f"{member.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:<:kralsei_hug:1534235398337855588><:kralsei_hug_blushing:1534235893668249822>",
-        f"{interaction.user.mention} hugs {member.mention} so much that they won't let go :people_hugging:<:kralsei_hug:1534235398337855588><:kralsei_hug_blushing:1534235893668249822>",
-        f"Hey {member.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:<:kralsei_hug:1534235398337855588><:kralsei_hug_blushing:1534235893668249822>"
+        f"{interaction.user.mention} tightly hugs {member.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
+        f"{member.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
+        f"{interaction.user.mention} hugs {member.mention} so much that they won't let go :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
+        f"Hey {member.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>"
     ]
     await interaction.response.send_message(random.choice(hug_messages))
 
