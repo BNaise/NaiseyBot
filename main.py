@@ -50,7 +50,7 @@ GUILD_ID = discord.Object(id=server_id)
 
 @client.tree.command(name="hello", description="Say hello", guild=GUILD_ID)
 
-async def sayHello(interaction: discord.Interaction):
+async def say_hello(interaction: discord.Interaction):
     await interaction.response.send_message("Hi there!")
 
 @client.tree.command(name="printer", description="Prints what you say", guild=GUILD_ID)
@@ -60,29 +60,29 @@ async def printer(interaction: discord.Interaction, printer: str):
 
 @client.tree.command(name="embed", description="Embed demo", guild=GUILD_ID)
 
-async def embeded(interaction: discord.Interaction):
+async def embeder(interaction: discord.Interaction):
     embed = discord.Embed(title="Title", url="https://www.youtube.com/@b_naise", description="Description", color=discord.Color.from_str("#52f0ef"))
     await interaction.response.send_message(embed=embed)
 
 @client.tree.command(name="hug", description="Send hugs! ^^", guild=GUILD_ID)
 
-async def printer(interaction: discord.Interaction, member: discord.Member):
+async def printer(interaction: discord.Interaction, user: discord.Member):
     hug_messages = [
-        f"{interaction.user.mention} tightly hugs {member.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
-        f"{member.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
-        f"{interaction.user.mention} hugs {member.mention} so much that they won't let go :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
-        f"Hey {member.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>"
+        f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
+        f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
+        f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
+        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>"
     ]
     await interaction.response.send_message(random.choice(hug_messages))
 
 @client.tree.command(name="praise", description="Praises the targeted person", guild=GUILD_ID)
 
-async def printer(interaction: discord.Interaction, member: discord.Member):
+async def praiser(interaction: discord.Interaction, user: discord.Member):
     praise_messages = [
-        f"Hehe ^^\n{member.mention} is such a cutie! ^^",
-        f"Awwwww :3\n{member.mention} is soooo cute! :33",
-        f"{member.mention}! you are so adorable! :3",
-        f"{member.mention}! you are sooo awesome! :3"
+        f"Hehe ^^\n{user.mention} is such a cutie! ^^",
+        f"Awwwww :3\n{user.mention} is soooo cute! :33",
+        f"{user.mention}! you are so adorable! :3",
+        f"{user.mention}! you are sooo awesome! :3"
     ]
     await interaction.response.send_message(random.choice(praise_messages))
 
