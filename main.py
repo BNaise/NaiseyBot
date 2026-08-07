@@ -6,13 +6,15 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
+import keepalive
+
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 
 # 1496213896552513708 The Digital world
 # 1515429501239169104 Testing
 
-server_id = 1496213896552513708
+server_id = 1515429501239169104
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -85,5 +87,21 @@ async def praiser(interaction: discord.Interaction, user: discord.Member):
         f"{user.mention}! you are sooo awesome! :3"
     ]
     await interaction.response.send_message(random.choice(praise_messages))
+
+@client.tree.command(name="deltarot", description="Says Deltarots", guild=GUILD_ID)
+
+async def deltarot(interaction: discord.Interaction):
+    deltarots = [
+        "JARONA!",
+        "Freedom’s just a penumbra phantasm for big shots with black knives about the world revolving around the hammer of justice sealed away with cutie mew mew magic at the pirate dojo in my castle town during the sunset of seven suns.",
+        "FREEDOM",
+        "FRIEND",
+        "GASTER",
+        "https://cdn.discordapp.com/attachments/1496213900339843125/1534932644113027144/HPBzsS9asAASz6L.png?ex=6a75ecec&is=6a749b6c&hm=b5d38c85790492714f24afa703ee4e8937876f85f41a517a824dce215d67235f&"
+    ]
+
+    await interaction.response.send_message(random.choice(deltarots))
+
+keepalive.keep_alive()
 
 client.run(token)
