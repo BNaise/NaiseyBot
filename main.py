@@ -14,7 +14,7 @@ token = os.getenv('DISCORD_TOKEN')
 # 1496213896552513708 The Digital world
 # 1515429501239169104 Testing
 
-server_id = 1515429501239169104
+server_id = 1496213896552513708
 
 class Client(commands.Bot):
     async def on_ready(self):
