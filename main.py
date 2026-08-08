@@ -124,6 +124,14 @@ async def deltarot(interaction: discord.Interaction):
 
     await interaction.response.send_message(random.choice(deltarots))
 
+@client.tree.command(name="gamble", description="Let's go gambling!")
+
+gamble = ["I can't stop winning!",
+          "Aww dang it!"]
+
+async def say_hello(interaction: discord.Interaction):
+    await interaction.response.send_message(random.choice(gamble))
+
 keepalive.keep_alive()
 
 client.run(token)
