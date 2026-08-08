@@ -116,7 +116,10 @@ async def deltarot(interaction: discord.Interaction):
         "HERE I COME SANFRANDISCOOOOOOOO!",
         "SUSTINGUS",
         "Hey guys, I think I found a glue!",
-        "Mysterious wind"
+        "Mysterious wind",
+        "Hey i think this kinda took a weird route.",
+        "Human... I remember... You're genocides...",
+        "Hey undyne!\nHow many human souls do we need to break the barrier?\n https://cdn.discordapp.com/attachments/1535731838398496909/1535733833922773052/whats-the-deal-with-undyne-and-seven-v0-6phs54pq4ase1.webp?ex=6a78d716&is=6a778596&hm=32f9750286ffde95009508995282afc9a8d928ac3f85473facb9182febaeac7a"
     ]
 
     await interaction.response.send_message(random.choice(deltarots))
