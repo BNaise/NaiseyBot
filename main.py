@@ -48,7 +48,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
-GUILD_ID = discord.Object(id=server_id)
+# GUILD_ID = discord.Object(id=server_id)
 
 
 @client.tree.command(name="hello", description="Say hello")
