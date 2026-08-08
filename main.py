@@ -14,19 +14,19 @@ token = os.getenv('DISCORD_TOKEN')
 # 1496213896552513708 The Digital world
 # 1515429501239169104 Testing
 
-server_id = 1496213896552513708
+# server_id = 1496213896552513708
 
 class Client(commands.Bot):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
 
-        try:
-            guild = discord.Object(id=server_id)
-            synced = await self.tree.sync(guild=guild)
-            print(f"Synced {len(synced)} commands to guild {guild.id}")
-
-        except Exception as e:
-            print(f"Error syncing commands: {e}")
+        # try:
+        #     guild = discord.Object(id=server_id)
+        #     synced = await self.tree.sync(guild=guild)
+        #     print(f"Synced {len(synced)} commands to guild {guild.id}")
+        #
+        # except Exception as e:
+        #     print(f"Error syncing commands: {e}")
 
     async def on_message(self, message):
         if message.author == self.user:
@@ -47,28 +47,28 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
-GUILD_ID = discord.Object(id=server_id)
+# GUILD_ID = discord.Object(id=server_id)
 
 
-@client.tree.command(name="hello", description="Say hello", guild=GUILD_ID)
+@client.tree.command(name="hello", description="Say hello")
 
 async def say_hello(interaction: discord.Interaction):
-    await interaction.response.send_message("Hi there!")
+    await interaction.response.send_message("Hi there! ^^")
 
-@client.tree.command(name="printer", description="Prints what you say", guild=GUILD_ID)
+@client.tree.command(name="printer", description="Prints what you say")
 
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
 
-@client.tree.command(name="embed", description="Embed demo", guild=GUILD_ID)
+@client.tree.command(name="embed", description="Embed demo")
 
 async def embeder(interaction: discord.Interaction):
     embed = discord.Embed(title="Title", url="https://www.youtube.com/@b_naise", description="Description", color=discord.Color.from_str("#52f0ef"))
     await interaction.response.send_message(embed=embed)
 
-@client.tree.command(name="hug", description="Send hugs! ^^", guild=GUILD_ID)
+@client.tree.command(name="hug", description="Send hugs! ^^")
 
-async def printer(interaction: discord.Interaction, user: discord.Member):
+async def huger(interaction: discord.Interaction, user: discord.Member):
     hug_messages = [
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
         f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
@@ -77,18 +77,22 @@ async def printer(interaction: discord.Interaction, user: discord.Member):
     ]
     await interaction.response.send_message(random.choice(hug_messages))
 
-@client.tree.command(name="praise", description="Praises the targeted person", guild=GUILD_ID)
+@client.tree.command(name="praise", description="Praises the targeted person")
 
 async def praiser(interaction: discord.Interaction, user: discord.Member):
     praise_messages = [
-        f"Hehe ^^\n{user.mention} is such a cutie! ^^",
-        f"Awwwww :3\n{user.mention} is soooo cute! :33",
-        f"{user.mention}! you are so adorable! :3",
-        f"{user.mention}! you are sooo awesome! :3"
+        f"Hehe ^^\n{user.mention} is such a cutie! ^^ <:ralsei_happy:1535296967486472263>",
+        f"Awwwww :3\n{user.mention} is soooo cute! :33 <:ralsei_cute:1535297013518704680>",
+        f"{user.mention}! you are so adorable! :3 <:ralsei_cute:1535297013518704680>",
+        f"{user.mention}! you are sooo awesome! :3 <:ralsei_happy:1535296967486472263>",
+        f"Awwwww! :3 isn't {user.mention} sooooo cute? <:ralsei_happy:1535296967486472263>",
+        f"{user.mention} is so cute! :3 <:ralsei_cute:1535297013518704680>",
+        f"{user.mention} is so cute that I can hug them endlessly! <:ralsei_happy:1535296967486472263>",
+        f"{user.mention} is such a cutie patooti :3 <:ralsei_happy:1535296967486472263>"
     ]
     await interaction.response.send_message(random.choice(praise_messages))
 
-@client.tree.command(name="deltarot", description="Says Deltarots", guild=GUILD_ID)
+@client.tree.command(name="deltarot", description="Says Deltarots")
 
 async def deltarot(interaction: discord.Interaction):
     deltarots = [
@@ -97,7 +101,21 @@ async def deltarot(interaction: discord.Interaction):
         "FREEDOM",
         "FRIEND",
         "GASTER",
-        "https://cdn.discordapp.com/attachments/1496213900339843125/1534932644113027144/HPBzsS9asAASz6L.png?ex=6a75ecec&is=6a749b6c&hm=b5d38c85790492714f24afa703ee4e8937876f85f41a517a824dce215d67235f&"
+        "PENUMBRA PHANTASM",
+        "Friend inside me!",
+        "BIG SHOT",
+        "Papyrus is the roaring knight trust",
+        "Always bet on papyrus knight!",
+        "DECEMBER",
+        "Yeah... the WORLD is kinda REVOLVING...",
+        "Mike...",
+        "1997",
+        "1225",
+        "Rip Onion :'(",
+        "HERE I COME SANFRANDISCOOOOOOOO!",
+        "SUSTINGUS",
+        "Hey guys, I think I found a glue!",
+        "Mysterious wind"
     ]
 
     await interaction.response.send_message(random.choice(deltarots))
