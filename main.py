@@ -48,7 +48,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
-# GUILD_ID = discord.Object(id=server_id)
+GUILD_ID = discord.Object(id=server_id)
 
 
 @client.tree.command(name="hello", description="Say hello")
@@ -124,7 +124,7 @@ async def deltarot(interaction: discord.Interaction):
 
     await interaction.response.send_message(random.choice(deltarots))
 
-@client.tree.command(name="gamble", description="Let's go gambling!")
+@client.tree.command(name="gamble", description="Let's go gambling!", guild=GUILD_ID)
 
 async def say_hello(interaction: discord.Interaction):
     gamble = ["I can't stop winning!",
