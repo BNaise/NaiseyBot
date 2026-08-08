@@ -15,19 +15,19 @@ token = os.getenv('DISCORD_TOKEN')
 # 1515429501239169104 Testing
 # 1516741859181989898 Naise SMP
 
-# server_id = 1516741859181989898
+server_id = 1516741859181989898
 
 class Client(commands.Bot):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
 
-        # try:
-        #     guild = discord.Object(id=server_id)
-        #     synced = await self.tree.sync(guild=guild)
-        #     print(f"Synced {len(synced)} commands to guild {guild.id}")
-        #
-        # except Exception as e:
-        #     print(f"Error syncing commands: {e}")
+        try:
+            guild = discord.Object(id=server_id)
+            synced = await self.tree.sync(guild=guild)
+            print(f"Synced {len(synced)} commands to guild {guild.id}")
+
+        except Exception as e:
+            print(f"Error syncing commands: {e}")
 
     # async def on_message(self, message):
     #     if message.author == self.user:
@@ -126,10 +126,9 @@ async def deltarot(interaction: discord.Interaction):
 
 @client.tree.command(name="gamble", description="Let's go gambling!")
 
-gamble = ["I can't stop winning!",
-          "Aww dang it!"]
-
 async def say_hello(interaction: discord.Interaction):
+    gamble = ["I can't stop winning!",
+              "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
 
 keepalive.keep_alive()
