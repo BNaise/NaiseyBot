@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 import keepalive
 
 load_dotenv()
-token = os.getenv('DISCORD_TOKEN')
 
 # 1496213896552513708 The Digital world
 # 1515429501239169104 Testing
@@ -132,4 +131,4 @@ async def say_hello(interaction: discord.Interaction):
 
 keepalive.keep_alive()
 
-client.run(token)
+client.run(os.getenv('DISCORD_TOKEN'))
