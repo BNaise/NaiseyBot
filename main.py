@@ -131,6 +131,6 @@ async def say_hello(interaction: discord.Interaction):
               "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
 
-# keepalive.keep_alive()
+keepalive.keep_alive()
 
 client.run(os.getenv('DISCORD_TOKEN'))
