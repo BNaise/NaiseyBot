@@ -11,11 +11,11 @@ import keepalive
 load_dotenv()
 
 # server_id = 1496213896552513708 # The Digital world
-server_id = 1515429501239169104 # Testing
+# server_id = 1515429501239169104 # Testing
 # server_id = 1516741859181989898 # Naise SMP
 # server_id = 1504594980566732861 # Naise Server
 
-GUILD_ID = discord.Object(id=server_id)
+# GUILD_ID = discord.Object(id=server_id)
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -30,7 +30,7 @@ class Client(commands.Bot):
             except Exception as e:
                 print(f"Error syncing commands: {e}")
 
-        await try_except()
+        # await try_except()
 
     # async def on_message(self, message):
     #     if message.author == self.user:
@@ -51,23 +51,23 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
-@client.tree.command(name="hello", description="Say hello", guild=GUILD_ID)
+@client.tree.command(name="hello", description="Say hello")
 
 async def say_hello(interaction: discord.Interaction):
     await interaction.response.send_message("Hi there! ^^")
 
-@client.tree.command(name="printer", description="Prints what you say", guild=GUILD_ID)
+@client.tree.command(name="printer", description="Prints what you say")
 
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
 
-@client.tree.command(name="embed", description="Embed demo", guild=GUILD_ID)
+@client.tree.command(name="embed", description="Embed demo")
 
 async def embeder(interaction: discord.Interaction):
     embed = discord.Embed(title="Title", url="https://www.youtube.com/@b_naise", description="Description", color=discord.Color.from_str("#52f0ef"))
     await interaction.response.send_message(embed=embed)
 
-@client.tree.command(name="hug", description="Send hugs! ^^", guild=GUILD_ID)
+@client.tree.command(name="hug", description="Send hugs! ^^")
 
 async def huger(interaction: discord.Interaction, user: discord.Member):
     hug_messages = [
@@ -78,7 +78,7 @@ async def huger(interaction: discord.Interaction, user: discord.Member):
     ]
     await interaction.response.send_message(random.choice(hug_messages))
 
-@client.tree.command(name="praise", description="Praises the targeted person", guild=GUILD_ID)
+@client.tree.command(name="praise", description="Praises the targeted person")
 
 async def praiser(interaction: discord.Interaction, user: discord.Member):
     praise_messages = [
@@ -93,7 +93,7 @@ async def praiser(interaction: discord.Interaction, user: discord.Member):
     ]
     await interaction.response.send_message(random.choice(praise_messages))
 
-@client.tree.command(name="deltarot", description="Says Deltarots", guild=GUILD_ID)
+@client.tree.command(name="deltarot", description="Says Deltarots")
 
 async def deltarot(interaction: discord.Interaction):
     deltarots = [
@@ -124,13 +124,13 @@ async def deltarot(interaction: discord.Interaction):
 
     await interaction.response.send_message(random.choice(deltarots))
 
-@client.tree.command(name="gamble", description="Let's go gambling!", guild=GUILD_ID)
+@client.tree.command(name="gamble", description="Let's go gambling!")
 
 async def say_hello(interaction: discord.Interaction):
     gamble = ["I can't stop winning!",
               "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
 
-keepalive.keep_alive()
+# keepalive.keep_alive()
 
 client.run(os.getenv('DISCORD_TOKEN'))
