@@ -7,7 +7,6 @@ from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
 import keepalive
-from keepalive import try_except
 
 load_dotenv()
 
@@ -22,7 +21,16 @@ class Client(commands.Bot):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
 
-        try_except()
+        async def try_except():
+            try:
+                guild = discord.Object(id=server_id)
+                synced = await self.tree.sync(guild=guild)
+                print(f"Synced {len(synced)} commands to guild {guild.id}")
+
+            except Exception as e:
+                print(f"Error syncing commands: {e}")
+
+        await try_except()
 
     # async def on_message(self, message):
     #     if message.author == self.user:
