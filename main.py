@@ -61,10 +61,11 @@ async def say_hello(interaction: discord.Interaction):
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
 
-@client.tree.command(name="embed", description="Embed demo")
+@client.tree.command(name="support", description="Support my creator ^^")
 
 async def embeder(interaction: discord.Interaction):
-    embed = discord.Embed(title="Title", url="https://www.youtube.com/@b_naise", description="Description", color=discord.Color.from_str("#52f0ef"))
+    embed = discord.Embed(title="B. Naise", url="https://www.youtube.com/@b_naise", description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
+    embed.set_thumbnail(url="https://ibb.co/PvfRDRS9")
     await interaction.response.send_message(embed=embed)
 
 @client.tree.command(name="hug", description="Send hugs! ^^")
