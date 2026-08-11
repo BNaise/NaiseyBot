@@ -65,7 +65,7 @@ async def printer(interaction: discord.Interaction, printer: str):
 
 async def embeder(interaction: discord.Interaction):
     embed = discord.Embed(title="B. Naise", url="https://www.youtube.com/@b_naise", description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
-    embed.set_thumbnail(url="https://ibb.co/PvfRDRS9")
+    embed.set_thumbnail(url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
     await interaction.response.send_message(embed=embed)
 
 @client.tree.command(name="hug", description="Send hugs! ^^")
@@ -132,6 +132,6 @@ async def say_hello(interaction: discord.Interaction):
               "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
 
-keepalive.keep_alive()
+# keepalive.keep_alive()
 
 client.run(os.getenv('DISCORD_TOKEN'))
