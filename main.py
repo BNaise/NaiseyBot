@@ -6,8 +6,6 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
-import keepalive
-
 load_dotenv()
 
 # server_id = 1496213896552513708 # The Digital world
@@ -24,14 +22,14 @@ class Client(commands.Bot):
         await client.tree.sync()
         print(f"Synced commands for {client.user}")
 
-        async def try_except():
-            try:
-                guild = discord.Object(id=server_id)
-                synced = await self.tree.sync(guild=guild)
-                print(f"Synced {len(synced)} commands to guild {guild.id}")
-
-            except Exception as e:
-                print(f"Error syncing commands: {e}")
+        # async def try_except():
+        #     try:
+        #         guild = discord.Object(id=server_id)
+        #         synced = await self.tree.sync(guild=guild)
+        #         print(f"Synced {len(synced)} commands to guild {guild.id}")
+        #
+        #     except Exception as e:
+        #         print(f"Error syncing commands: {e}")
 
         # await try_except()
 
@@ -134,7 +132,5 @@ async def gamble(interaction: discord.Interaction):
     gamble = ["I can't stop winning!",
               "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
-
-# keepalive.keep_alive()
 
 client.run(os.getenv('DISCORD_TOKEN'))
