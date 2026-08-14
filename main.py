@@ -21,6 +21,9 @@ class Client(commands.Bot):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
 
+        await client.tree.sync()
+        print(f"Synced commands for {client.user}")
+
         async def try_except():
             try:
                 guild = discord.Object(id=server_id)
@@ -127,7 +130,7 @@ async def deltarot(interaction: discord.Interaction):
 
 @client.tree.command(name="gamble", description="Let's go gambling!")
 
-async def say_hello(interaction: discord.Interaction):
+async def gamble(interaction: discord.Interaction):
     gamble = ["I can't stop winning!",
               "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
