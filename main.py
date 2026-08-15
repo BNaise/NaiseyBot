@@ -8,13 +8,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# server_id = 1496213896552513708 # The Digital world
-# server_id = 1515429501239169104 # Testing
-# server_id = 1516741859181989898 # Naise SMP
-# server_id = 1504594980566732861 # Naise Server
-
-# GUILD_ID = discord.Object(id=server_id)
-
 # Emoji's
 kralsei_hug = "<:kralsei_hug:1534290578974445780>"
 kralsei_hug_blushing = "<:kralsei_hug_blushing:1534290631114096690>"
@@ -24,6 +17,24 @@ ralsei_laughing = "<:ralsei_laughing:1535297049098977361>"
 ralsei_cute_evil = "<:ralsei_cute_evil:1535297118250467470>"
 ralsei_shocked = "<:ralsei_shocked:1535297165231005777>"
 kris_wiggle = "<a:kris_wiggle:1538120840720158740>"
+driving_in_my_caaar = "<:driving_in_my_caaar:1538225748928761907>"
+errrm = "<:errrm:1538225795703644160>"
+mama_miba = "<:mama_miba:1538225824808046643>"
+lancer = "<:lancer:1538225863462621215>"
+dess_shocked = "<:dess_shocked:1538225908027105280>"
+ralsei_splat = "<:ralsei_splat:1538225944005972128>"
+spamton_dance = "<a:spamton_dance:1538226075916705834>"
+YOUR_TAKING_TOO_LONG = "<:YOUR_TAKING_TOO_LONG:1538226123694145606>"
+your_taking_too_long = "<:your_taking_too_long:1538226157046997062>"
+vulkin_happy = "<:vulkin_happy:1538226201347498094>"
+friend_inside_me = "<:friend_inside_me:1538226240799113216>"
+the_final_starwalker = "<:the_final_starwalker:1538226301473783958>"
+the_original_starwalker = "<:the_original_starwalker:1538226330045390918>"
+tenna_dance = "<a:tenna_dance:1538226437235146762>"
+tenna_dance_2 = "<a:tenna_dance_2:1538226501034709012>"
+jevil_dance = "<a:jevil_dance:1538226552721117315>"
+gaster_dance = "<a:gaster_dance:1538226632999833651>"
+boooom = "<a:boooom:1538226668089376869>"
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -31,17 +42,6 @@ class Client(commands.Bot):
 
         await client.tree.sync()
         print(f"Synced commands for {client.user}")
-
-        # async def try_except():
-        #     try:
-        #         guild = discord.Object(id=server_id)
-        #         synced = await self.tree.sync(guild=guild)
-        #         print(f"Synced {len(synced)} commands to guild {guild.id}")
-        #
-        #     except Exception as e:
-        #         print(f"Error syncing commands: {e}")
-
-        # await try_except()
 
     # async def on_message(self, message):
     #     if message.author == self.user:
@@ -81,8 +81,7 @@ async def printer(interaction: discord.Interaction, printer: str):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def embeder(interaction: discord.Interaction):
-    embed = discord.Embed(title="B. Naise", url="https://www.youtube.com/@b_naise",
-                          description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
+    embed = discord.Embed(title="B. Naise", url="https://www.youtube.com/@b_naise", description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
     embed.set_thumbnail(url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
     await interaction.response.send_message(embed=embed)
 
@@ -95,7 +94,20 @@ async def huger(interaction: discord.Interaction, user: discord.User):
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:{kralsei_hug}{kralsei_hug_blushing}"
+        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} gives {user.mention} a big warm hug! {vulkin_happy}{kralsei_hug}"
+        f"{interaction.user.mention} wraps their arms around {user.mention}! {kralsei_hug_blushing}",
+        f"{interaction.user.mention} gives {user.mention} a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}",
+        f"{interaction.user.mention} hugs {user.mention} with all their might! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} pulls {user.mention} into a cozy hug! {kralsei_hug_blushing}",
+        f"{interaction.user.mention} gives {user.mention} a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs {user.mention}. Awwww! {ralsei_happy}{kralsei_hug}",
+        f"{interaction.user.mention} has hugged {user.mention}. They are now legally required to be happy. {ralsei_happy}{kralsei_hug_blushing}",
+        f"HUG DETECTED! {interaction.user.mention} has hugged {user.mention}! {kralsei_hug}",
+        f"{interaction.user.mention} launches themselves at {user.mention} with a hug! {kralsei_hug_blushing}",
+        f"{interaction.user.mention} and {user.mention} are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} sends a hug directly to {user.mention}'s soul. {kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs {user.mention}. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
     ]
 
     choice = random.choice(hug_messages)
@@ -150,7 +162,10 @@ async def deltarot(interaction: discord.Interaction):
         "Mysterious wind",
         "Hey i think this kinda took a weird route.",
         "Human... I remember... You're genocides...",
-        "Hey undyne!\nHow many human souls do we need to break the barrier?"
+        "Hey undyne!\nHow many human souls do we need to break the barrier?",
+        f"{gaster_dance}",
+        f"{friend_inside_me}",
+        f"CHAOS CHAOS! {jevil_dance}"
     ]
 
     choice = random.choice(deltarots)
@@ -185,10 +200,10 @@ async def silliness(interaction: discord.Interaction, user: discord.User = None)
                  f"{kris_wiggle}"]
     else:
         silly = [f"{user.mention}! I wuv you! ^w^ {ralsei_happy}",
-                 f"Ummmm {user.mention}! {interaction.user.mention} is purring at you{ralsei_happy}",
+                 f"Ummmm {user.mention}! {interaction.user.mention} is purring at you {ralsei_happy}",
                  f"{user.mention}! {interaction.user.mention} is pulling your hair {ralsei_cute_evil}",
                  f"{user.mention}! {interaction.user.mention} wants to.. eat you? {ralsei_shocked}",
-                 f"{interaction.user.mention} is sitting on {user.mention}'s lap! :3{ralsei_happy}"]
+                 f"{interaction.user.mention} is sitting on {user.mention}'s lap! :3 {ralsei_happy}"]
 
     choice = random.choice(silly)
 
