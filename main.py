@@ -95,7 +95,7 @@ async def huger(interaction: discord.Interaction, user: discord.User):
         f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} gives {user.mention} a big warm hug! {vulkin_happy}{kralsei_hug}"
+        f"{interaction.user.mention} gives {user.mention} a big warm hug! {vulkin_happy}{kralsei_hug}",
         f"{interaction.user.mention} wraps their arms around {user.mention}! {kralsei_hug_blushing}",
         f"{interaction.user.mention} gives {user.mention} a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}",
         f"{interaction.user.mention} hugs {user.mention} with all their might! {ralsei_happy}{kralsei_hug_blushing}",
