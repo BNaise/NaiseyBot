@@ -15,6 +15,15 @@ load_dotenv()
 
 # GUILD_ID = discord.Object(id=server_id)
 
+# Emoji's
+kralsei_hug = "<:kralsei_hug:1534290578974445780>"
+kralsei_hug_blushing = "<:kralsei_hug_blushing:1534290631114096690>"
+ralsei_happy = "<:ralsei_happy:1535296967486472263>"
+ralsei_cute = "<:ralsei_cute:1535297013518704680>"
+ralsei_laughing = "<:ralsei_laughing:1535297049098977361>"
+ralsei_cute_evil = "<:ralsei_cute_evil:1535297118250467470>"
+ralsei_shocked = "<:ralsei_shocked:1535297165231005777>"
+
 class Client(commands.Bot):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
@@ -55,7 +64,7 @@ client = Client(command_prefix="!", intents=intents)
 @client.tree.command(name="hello", description="Say hello")
 
 async def say_hello(interaction: discord.Interaction):
-    await interaction.response.send_message("Hi there! ^^")
+    await interaction.response.send_message(f"Hi there! ^^ {ralsei_happy}")
 
 @client.tree.command(name="printer", description="Prints what you say")
 
@@ -74,10 +83,10 @@ async def embeder(interaction: discord.Interaction):
 async def huger(interaction: discord.Interaction, user: discord.Member):
 
     hug_messages = [
-        f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
-        f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
-        f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
-        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>"
+        f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:{kralsei_hug}{kralsei_hug_blushing}"
     ]
 
     choice = random.choice(hug_messages)
@@ -91,14 +100,14 @@ async def huger(interaction: discord.Interaction, user: discord.Member):
 
 async def praiser(interaction: discord.Interaction, user: discord.Member):
     praise_messages = [
-        f"Hehe ^^\n{user.mention} is such a cutie! ^^ <:ralsei_happy:1535296967486472263>",
-        f"Awwwww :3\n{user.mention} is soooo cute! :33 <:ralsei_cute:1535297013518704680>",
-        f"{user.mention}! you are so adorable! :3 <:ralsei_cute:1535297013518704680>",
-        f"{user.mention}! you are sooo awesome! :3 <:ralsei_happy:1535296967486472263>",
-        f"Awwwww! :3 isn't {user.mention} sooooo cute? <:ralsei_happy:1535296967486472263>",
-        f"{user.mention} is so cute! :3 <:ralsei_cute:1535297013518704680>",
-        f"{user.mention} is so cute that I can hug them endlessly! <:ralsei_happy:1535296967486472263>",
-        f"{user.mention} is such a cutie patooti :3 <:ralsei_happy:1535296967486472263>"
+        f"Hehe ^^\n{user.mention} is such a cutie! ^^ {ralsei_happy}",
+        f"Awwwww :3\n{user.mention} is soooo cute! :33 {ralsei_cute}",
+        f"{user.mention}! you are so adorable! :3 {ralsei_cute}",
+        f"{user.mention}! you are sooo awesome! :3 {ralsei_happy}",
+        f"Awwwww! :3 isn't {user.mention} sooooo cute? {ralsei_happy}",
+        f"{user.mention} is so cute! :3 {ralsei_cute}",
+        f"{user.mention} is so cute that I can hug them endlessly! {ralsei_happy}",
+        f"{user.mention} is such a cutie patooti :3 {ralsei_happy}"
     ]
     await interaction.response.send_message(random.choice(praise_messages))
 
@@ -145,5 +154,26 @@ async def gamble(interaction: discord.Interaction):
     gamble = ["I can't stop winning!",
               "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
+
+@client.tree.command(name="silly", description="Silly :P")
+
+async def silliness(interaction: discord.Interaction, user: discord.Member = None):
+    if not user:
+        silly = ["Bleh",
+                 "Meow :3",
+                 "Mrewwww :3",
+                 "Nyaaaaa~",
+                 "Nyon!",
+                 "Ulelelelele"]
+    else:
+        silly = [f"{user.mention}! I wuv you! ^w^ {ralsei_happy}",
+                 f"Ummmm {user.mention}! {interaction.user.mention} is purring at you{ralsei_happy}",
+                 f"{user.mention}! {interaction.user.mention} is pulling your hair {ralsei_cute_evil}",
+                 f"{user.mention}! {interaction.user.mention} wants to.. eat you? {ralsei_shocked}",
+                 f"{interaction.user.mention} is sitting on {user.mention}'s lap! :3{ralsei_happy}"]
+
+    choice = random.choice(silly)
+
+    await interaction.response.send_message(choice)
 
 client.run(os.getenv('DISCORD_TOKEN'))
