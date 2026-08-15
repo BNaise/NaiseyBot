@@ -23,6 +23,7 @@ ralsei_cute = "<:ralsei_cute:1535297013518704680>"
 ralsei_laughing = "<:ralsei_laughing:1535297049098977361>"
 ralsei_cute_evil = "<:ralsei_cute_evil:1535297118250467470>"
 ralsei_shocked = "<:ralsei_shocked:1535297165231005777>"
+kris_wiggle = "<a:kris_wiggle:1538120840720158740>"
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -57,31 +58,32 @@ class Client(commands.Bot):
     #                              f"Before: {before.content}\n"
     #                              f"After: {after.content}")
 
+
 intents = discord.Intents.default()
 intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
-@client.tree.command(name="hello", description="Say hello")
 
+@client.tree.command(name="hello", description="Say hello")
 async def say_hello(interaction: discord.Interaction):
     await interaction.response.send_message(f"Hi there! ^^ {ralsei_happy}")
 
-@client.tree.command(name="printer", description="Prints what you say")
 
+@client.tree.command(name="printer", description="Prints what you say")
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
 
-@client.tree.command(name="support", description="Support my creator ^^")
 
+@client.tree.command(name="support", description="Support my creator ^^")
 async def embeder(interaction: discord.Interaction):
-    embed = discord.Embed(title="B. Naise", url="https://www.youtube.com/@b_naise", description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
+    embed = discord.Embed(title="B. Naise", url="https://www.youtube.com/@b_naise",
+                          description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
     embed.set_thumbnail(url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
     await interaction.response.send_message(embed=embed)
 
+
 @client.tree.command(name="hug", description="Send hugs! ^^")
-
 async def huger(interaction: discord.Interaction, user: discord.Member):
-
     hug_messages = [
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
@@ -96,8 +98,8 @@ async def huger(interaction: discord.Interaction, user: discord.Member):
     else:
         await interaction.response.send_message(choice)
 
-@client.tree.command(name="praise", description="Praises the targeted person")
 
+@client.tree.command(name="praise", description="Praises the targeted person")
 async def praiser(interaction: discord.Interaction, user: discord.Member):
     praise_messages = [
         f"Hehe ^^\n{user.mention} is such a cutie! ^^ {ralsei_happy}",
@@ -111,8 +113,8 @@ async def praiser(interaction: discord.Interaction, user: discord.Member):
     ]
     await interaction.response.send_message(random.choice(praise_messages))
 
-@client.tree.command(name="deltarot", description="Says Deltarots")
 
+@client.tree.command(name="deltarot", description="Says Deltarots")
 async def deltarot(interaction: discord.Interaction):
     deltarots = [
         "JARONA!",
@@ -148,15 +150,15 @@ async def deltarot(interaction: discord.Interaction):
     else:
         await interaction.response.send_message(choice)
 
-@client.tree.command(name="gamble", description="Let's go gambling!")
 
+@client.tree.command(name="gamble", description="Let's go gambling!")
 async def gamble(interaction: discord.Interaction):
     gamble = ["I can't stop winning!",
               "Aww dang it!"]
     await interaction.response.send_message(random.choice(gamble))
 
-@client.tree.command(name="silly", description="Silly :P")
 
+@client.tree.command(name="silly", description="Silly :P")
 async def silliness(interaction: discord.Interaction, user: discord.Member = None):
     if not user:
         silly = ["Bleh",
@@ -164,7 +166,8 @@ async def silliness(interaction: discord.Interaction, user: discord.Member = Non
                  "Mrewwww :3",
                  "Nyaaaaa~",
                  "Nyon!",
-                 "Ulelelelele"]
+                 "Ulelelelele",
+                 f"{kris_wiggle}"]
     else:
         silly = [f"{user.mention}! I wuv you! ^w^ {ralsei_happy}",
                  f"Ummmm {user.mention}! {interaction.user.mention} is purring at you{ralsei_happy}",
@@ -175,5 +178,6 @@ async def silliness(interaction: discord.Interaction, user: discord.Member = Non
     choice = random.choice(silly)
 
     await interaction.response.send_message(choice)
+
 
 client.run(os.getenv('DISCORD_TOKEN'))
