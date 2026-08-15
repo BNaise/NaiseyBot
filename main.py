@@ -63,7 +63,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
-
 @client.tree.command(name="hello", description="Say hello")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
@@ -91,7 +90,7 @@ async def embeder(interaction: discord.Interaction):
 @client.tree.command(name="hug", description="Send hugs! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def huger(interaction: discord.Interaction, user: discord.Member):
+async def huger(interaction: discord.Interaction, user: discord.User):
     hug_messages = [
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
@@ -110,7 +109,7 @@ async def huger(interaction: discord.Interaction, user: discord.Member):
 @client.tree.command(name="praise", description="Praises the targeted person")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def praiser(interaction: discord.Interaction, user: discord.Member):
+async def praiser(interaction: discord.Interaction, user: discord.User):
     praise_messages = [
         f"Hehe ^^\n{user.mention} is such a cutie! ^^ {ralsei_happy}",
         f"Awwwww :3\n{user.mention} is soooo cute! :33 {ralsei_cute}",
@@ -175,7 +174,7 @@ async def gamble(interaction: discord.Interaction):
 @client.tree.command(name="silly", description="Silly :P")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def silliness(interaction: discord.Interaction, user: discord.Member = None):
+async def silliness(interaction: discord.Interaction, user: discord.User = None):
     if not user:
         silly = ["Bleh",
                  "Meow :3",
