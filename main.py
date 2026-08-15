@@ -65,16 +65,22 @@ client = Client(command_prefix="!", intents=intents)
 
 
 @client.tree.command(name="hello", description="Say hello")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def say_hello(interaction: discord.Interaction):
     await interaction.response.send_message(f"Hi there! ^^ {ralsei_happy}")
 
 
 @client.tree.command(name="printer", description="Prints what you say")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
 
 
 @client.tree.command(name="support", description="Support my creator ^^")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def embeder(interaction: discord.Interaction):
     embed = discord.Embed(title="B. Naise", url="https://www.youtube.com/@b_naise",
                           description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
@@ -83,6 +89,8 @@ async def embeder(interaction: discord.Interaction):
 
 
 @client.tree.command(name="hug", description="Send hugs! ^^")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def huger(interaction: discord.Interaction, user: discord.Member):
     hug_messages = [
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
@@ -100,6 +108,8 @@ async def huger(interaction: discord.Interaction, user: discord.Member):
 
 
 @client.tree.command(name="praise", description="Praises the targeted person")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def praiser(interaction: discord.Interaction, user: discord.Member):
     praise_messages = [
         f"Hehe ^^\n{user.mention} is such a cutie! ^^ {ralsei_happy}",
@@ -115,6 +125,8 @@ async def praiser(interaction: discord.Interaction, user: discord.Member):
 
 
 @client.tree.command(name="deltarot", description="Says Deltarots")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def deltarot(interaction: discord.Interaction):
     deltarots = [
         "JARONA!",
@@ -152,6 +164,8 @@ async def deltarot(interaction: discord.Interaction):
 
 
 @client.tree.command(name="gamble", description="Let's go gambling!")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def gamble(interaction: discord.Interaction):
     gamble = ["I can't stop winning!",
               "Aww dang it!"]
@@ -159,6 +173,8 @@ async def gamble(interaction: discord.Interaction):
 
 
 @client.tree.command(name="silly", description="Silly :P")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def silliness(interaction: discord.Interaction, user: discord.Member = None):
     if not user:
         silly = ["Bleh",
