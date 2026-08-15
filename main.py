@@ -99,32 +99,38 @@ async def praiser(interaction: discord.Interaction, user: discord.Member):
 
 async def deltarot(interaction: discord.Interaction):
     deltarots = [
-        "JARONA!",
-        "Freedom’s just a penumbra phantasm for big shots with black knives about the world revolving around the hammer of justice sealed away with cutie mew mew magic at the pirate dojo in my castle town during the sunset of seven suns.",
-        "FREEDOM",
-        "FRIEND",
-        "GASTER",
-        "PENUMBRA PHANTASM",
-        "Friend inside me!",
-        "BIG SHOT",
-        "Papyrus is the roaring knight trust",
-        "Always bet on papyrus knight!",
-        "DECEMBER",
-        "Yeah... the WORLD is kinda REVOLVING...",
-        "Mike...",
-        "1997",
-        "1225",
-        "Rip Onion :'(",
-        "HERE I COME SANFRANDISCOOOOOOOO!",
-        "SUSTINGUS",
-        "Hey guys, I think I found a glue!",
-        "Mysterious wind",
-        "Hey i think this kinda took a weird route.",
-        "Human... I remember... You're genocides...",
-        "Hey undyne!\nHow many human souls do we need to break the barrier?\nhttps://cdn.discordapp.com/attachments/1535731838398496909/1535733833922773052/whats-the-deal-with-undyne-and-seven-v0-6phs54pq4ase1.webp?ex=6a78d716&is=6a778596&hm=32f9750286ffde95009508995282afc9a8d928ac3f85473facb9182febaeac7a"
+        # "JARONA!",
+        # "Freedom’s just a penumbra phantasm for big shots with black knives about the world revolving around the hammer of justice sealed away with cutie mew mew magic at the pirate dojo in my castle town during the sunset of seven suns.",
+        # "FREEDOM",
+        # "FRIEND",
+        # "GASTER",
+        # "PENUMBRA PHANTASM",
+        # "Friend inside me!",
+        # "BIG SHOT",
+        # "Papyrus is the roaring knight trust",
+        # "Always bet on papyrus knight!",
+        # "DECEMBER",
+        # "Yeah... the WORLD is kinda REVOLVING...",
+        # "Mike...",
+        # "1997",
+        # "1225",
+        # "Rip Onion :'(",
+        # "HERE I COME SANFRANDISCOOOOOOOO!",
+        # "SUSTINGUS",
+        # "Hey guys, I think I found a glue!",
+        # "Mysterious wind",
+        # "Hey i think this kinda took a weird route.",
+        # "Human... I remember... You're genocides...",
+        "Hey undyne!\nHow many human souls do we need to break the barrier?"
     ]
 
-    await interaction.response.send_message(random.choice(deltarots))
+    choice = random.choice(deltarots)
+
+    if choice == "Hey undyne!\nHow many human souls do we need to break the barrier?":
+        file = discord.File("files/undyne-seven.webp")
+        await interaction.response.send_message(choice, file=file)
+    else:
+        await interaction.response.send_message(choice)
 
 @client.tree.command(name="gamble", description="Let's go gambling!")
 
