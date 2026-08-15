@@ -72,13 +72,20 @@ async def embeder(interaction: discord.Interaction):
 @client.tree.command(name="hug", description="Send hugs! ^^")
 
 async def huger(interaction: discord.Interaction, user: discord.Member):
+
     hug_messages = [
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
         f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
         f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>",
         f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:<:kralsei_hug:1534290578974445780><:kralsei_hug_blushing:1534290631114096690>"
     ]
-    await interaction.response.send_message(random.choice(hug_messages))
+
+    choice = random.choice(hug_messages)
+
+    if interaction.user == user:
+        await interaction.response.send_message(f"{interaction.user.mention} gave themselves a hug")
+    else:
+        await interaction.response.send_message(choice)
 
 @client.tree.command(name="praise", description="Praises the targeted person")
 
