@@ -208,4 +208,20 @@ async def silliness(interaction: discord.Interaction, user: discord.User = None)
 
     await interaction.response.send_message(choice)
 
+@client.tree.command(name="permahug", description="Permanently hug someone ^^")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+async def perma_huger(interaction: discord.Interaction, user: discord.User):
+    hug_messages = [
+        f"{interaction.user.mention} permanently hugs {user.mention} {kralsei_hug}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs {user.mention} permanently {kralsei_hug_blushing}"
+    ]
+
+    choice = random.choice(hug_messages)
+
+    if interaction.user == user:
+        await interaction.response.send_message(f"{interaction.user.mention} you can't just do that!")
+    else:
+        await interaction.response.send_message(choice)
+
 client.run(os.getenv('DISCORD_TOKEN'))
