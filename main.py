@@ -215,7 +215,9 @@ async def perma_huger(interaction: discord.Interaction, user: discord.User):
     hug_messages = [
         f"{interaction.user.mention} permanently hugs {user.mention} {kralsei_hug}{kralsei_hug_blushing}",
         f"{interaction.user.mention} hugs {user.mention} permanently {kralsei_hug_blushing}",
-        f"{interaction.user.mention} hugs {user.mention} and they won't let go, ever {kralsei_hug_blushing}"
+        f"{interaction.user.mention} hugs {user.mention} and they won't let go, ever {kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs {user.mention} and never let's go until the end of time and beyond {kralsei_hug_blushing}",
+        f"{interaction.user.mention} has trapped {user.mention} with an eternal hug {kralsei_hug}"
     ]
 
     choice = random.choice(hug_messages)
