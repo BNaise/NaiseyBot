@@ -214,7 +214,8 @@ async def silliness(interaction: discord.Interaction, user: discord.User = None)
 async def perma_huger(interaction: discord.Interaction, user: discord.User):
     hug_messages = [
         f"{interaction.user.mention} permanently hugs {user.mention} {kralsei_hug}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} hugs {user.mention} permanently {kralsei_hug_blushing}"
+        f"{interaction.user.mention} hugs {user.mention} permanently {kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs {user.mention} and they won't let go, ever {kralsei_hug_blushing}"
     ]
 
     choice = random.choice(hug_messages)
