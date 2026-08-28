@@ -227,4 +227,11 @@ async def perma_huger(interaction: discord.Interaction, user: discord.User):
     else:
         await interaction.response.send_message(choice)
 
+@client.tree.command(name="hugeveryone", description="Hugs everyone ^^")
+# @app_commands.allowed_installs(guilds=True, users=True)
+# @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+async def hug_everyone(interaction: discord.Interaction):
+
+    await interaction.response.send_message(f"{interaction.user.mention} has hugged @everyone with all their might {kralsei_hug_blushing}")
+
 client.run(os.getenv('DISCORD_TOKEN'))
