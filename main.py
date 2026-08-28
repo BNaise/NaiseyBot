@@ -232,6 +232,25 @@ async def perma_huger(interaction: discord.Interaction, user: discord.User):
 # @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def hug_everyone(interaction: discord.Interaction):
 
-    await interaction.response.send_message(f"{interaction.user.mention} has hugged @everyone with all their might {kralsei_hug_blushing}")
+    hug_messages = \
+    [
+        f"{interaction.user.mention} tightly hugs @everyone :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"Hey @everyone! {interaction.user.mention} just sent you guys a ton of hugs! ^^ {kralsei_hug_blushing}{ralsei_happy}",
+        f"{interaction.user.mention} gives @everyone a big warm hug! {vulkin_happy}{kralsei_hug}",
+        f"{interaction.user.mention} wraps their arms around @everyone! {kralsei_hug_blushing}",
+        f"{interaction.user.mention} gives @everyone a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}",
+        f"{interaction.user.mention} hugs @everyone with all their might! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} pulls @everyone into a cozy hug! {kralsei_hug_blushing}",
+        f"{interaction.user.mention} gives @everyone a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs @everyone. Awwww! {ralsei_happy}{kralsei_hug}",
+        f"HUG DETECTED! {interaction.user.mention} has hugged @everyone! {kralsei_hug}",
+        f"{interaction.user.mention} and @everyone are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
+        f"{interaction.user.mention} sends a hug directly to @everyone's soul. {kralsei_hug_blushing}",
+        f"{interaction.user.mention} hugs @everyone. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
+    ]
+
+    choice = random.choice(hug_messages)
+
+    await interaction.response.send_message(choice)
 
 client.run(os.getenv('DISCORD_TOKEN'))
