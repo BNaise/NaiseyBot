@@ -6,6 +6,8 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
+import keep_alive
+
 load_dotenv()
 
 # Emoji's
@@ -256,5 +258,7 @@ async def hug_everyone(interaction: discord.Interaction):
     choice = random.choice(hug_messages)
 
     await interaction.response.send_message(choice)
+
+keep_alive.keep_alive()
 
 bot.run(os.getenv('DISCORD_TOKEN'))
