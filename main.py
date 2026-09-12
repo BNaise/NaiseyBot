@@ -99,9 +99,9 @@ async def embeder(interaction: discord.Interaction):
 async def huger(interaction: discord.Interaction, user: discord.User):
     hug_messages = [
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
+        f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} {kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
         f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ :people_hugging:{kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
+        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ {kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
         f"{interaction.user.mention} gives {user.mention} a big warm hug! {vulkin_happy}{kralsei_hug}",
         f"{interaction.user.mention} wraps their arms around {user.mention}! {kralsei_hug_blushing}",
         f"{interaction.user.mention} gives {user.mention} a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}",
