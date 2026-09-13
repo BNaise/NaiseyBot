@@ -41,7 +41,13 @@ ralsei_heart = "<:ralsei_heart:1547658659121602652>"
 
 bot: commands.Bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
-# class Client(commands.Bot):
+def calculate(expr):
+    expr = expr.replace('x', '*').replace('X', '*').replace('^', '**')
+    if not re.fullmatch(r'[\d+\-*/().\s^a-zA-Z]+', expr):
+        raise ValueError("Invalid characters in expression")
+    allowed_names = {"sqrt": math.sqrt}
+    return eval(expr, {"__builtins__": {}}, allowed_names)
+
 @bot.event
 async def on_ready():
     print(f'Logged on as {bot.user}!')
@@ -63,11 +69,6 @@ async def on_ready():
     #     await after.channel.send(f"Message edited by {after.author}\n"
     #                              f"Before: {before.content}\n"
     #                              f"After: {after.content}")
-
-
-# intents = discord.Intents.default()
-# intents.message_content = True
-# client = Client(command_prefix="!", intents=intents)
 
 @bot.tree.command(name="hello", description="Say hello")
 @app_commands.allowed_installs(guilds=True, users=True)
@@ -258,6 +259,15 @@ async def hug_everyone(interaction: discord.Interaction):
     choice = random.choice(hug_messages)
 
     await interaction.response.send_message(choice)
+
+@bot.tree.command(name="calculate", description="Type equations to calculate", guild=GUILD_ID)
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+async def calculator(interaction: discord.Interaction, equation: str):
+    try:
+      await interaction.response.send_message(f"{equation} = {calculate(equation)}")
+    except Exception as e:
+      await interaction.response.send_message(f"Error: {e}")
 
 keep_alive.keep_alive()
 
