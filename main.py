@@ -8,6 +8,9 @@ from dotenv import load_dotenv
 
 import keep_alive
 
+import re
+import math
+
 load_dotenv()
 
 # Emoji's
