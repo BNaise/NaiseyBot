@@ -46,9 +46,25 @@ bot: commands.Bot = commands.Bot(command_prefix="!", intents=discord.Intents.all
 
 def calculate(expr):
     expr = expr.replace('x', '*').replace('X', '*').replace('^', '**')
-    if not re.fullmatch(r'[\d+\-*/().\s^a-zA-Z]+', expr):
+    if not re.fullmatch(r'[\d+\-*/().\s^a-zA-Z,]+', expr):
         raise ValueError("Invalid characters in expression")
-    allowed_names = {"sqrt": math.sqrt}
+    allowed_names = {
+        "sqrt": math.sqrt,
+        "sin": math.sin,
+        "cos": math.cos,
+        "tan": math.tan,
+        "asin": math.asin,
+        "acos": math.acos,
+        "atan": math.atan,
+        "log": math.log,      # natural log, or log(x, base)
+        "log10": math.log10,
+        "log2": math.log2,
+        "exp": math.exp,
+        "pi": math.pi,
+        "e": math.e,
+        "abs": abs,
+        "factorial": math.factorial,
+    }
     return eval(expr, {"__builtins__": {}}, allowed_names)
 
 @bot.event
