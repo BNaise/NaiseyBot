@@ -260,7 +260,7 @@ async def hug_everyone(interaction: discord.Interaction):
 
     await interaction.response.send_message(choice)
 
-@bot.tree.command(name="calculate", description="Type equations to calculate", guild=GUILD_ID)
+@bot.tree.command(name="calculate", description="Type equations to calculate")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def calculator(interaction: discord.Interaction, equation: str):
