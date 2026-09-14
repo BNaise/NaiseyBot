@@ -45,18 +45,52 @@ ralsei_heart = "<:ralsei_heart:1547658659121602652>"
 bot: commands.Bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
 def calculate(expr):
+    if expr.strip().lower() == "list":
+        return "\n".join([
+            "+  -  *  /  x  ^",
+            "sqrt(x)",
+            "sin(x)  cos(x)  tan(x)          [radians]",
+            "asin(x) acos(x) atan(x)         [radians]",
+            "sind(x) cosd(x) tand(x)         [degrees]",
+            "asind(x) acosd(x) atand(x)      [degrees]",
+            "sinh(x) cosh(x) tanh(x)",
+            "log(x) log(x, base) log10(x) log2(x)",
+            "exp(x)",
+            "abs(x)",
+            "factorial(x)",
+            "round(x) round(x, n)",
+            "floor(x) ceil(x)",
+            "gcd(a, b) lcm(a, b)",
+            "hypot(a, b)",
+            "mod(a, b)",
+            "min(a, b, ...) max(a, b, ...)",
+            "deg(x) rad(x)",
+            "pi  e",
+        ])
     expr = expr.replace('x', '*').replace('X', '*').replace('^', '**')
     if not re.fullmatch(r'[\d+\-*/().\s^a-zA-Z,]+', expr):
         raise ValueError("Invalid characters in expression")
     allowed_names = {
         "sqrt": math.sqrt,
+        # radians (standard)
         "sin": math.sin,
         "cos": math.cos,
         "tan": math.tan,
         "asin": math.asin,
         "acos": math.acos,
         "atan": math.atan,
-        "log": math.log,      # natural log, or log(x, base)
+        # degrees
+        "sind": lambda x: math.sin(math.radians(x)),
+        "cosd": lambda x: math.cos(math.radians(x)),
+        "tand": lambda x: math.tan(math.radians(x)),
+        "asind": lambda x: math.degrees(math.asin(x)),
+        "acosd": lambda x: math.degrees(math.acos(x)),
+        "atand": lambda x: math.degrees(math.atan(x)),
+        # hyperbolic
+        "sinh": math.sinh,
+        "cosh": math.cosh,
+        "tanh": math.tanh,
+        "log": math.log,
         "log10": math.log10,
         "log2": math.log2,
         "exp": math.exp,
@@ -64,6 +98,17 @@ def calculate(expr):
         "e": math.e,
         "abs": abs,
         "factorial": math.factorial,
+        "round": round,
+        "floor": math.floor,
+        "ceil": math.ceil,
+        "gcd": math.gcd,
+        "lcm": math.lcm,
+        "hypot": math.hypot,
+        "mod": lambda a, b: a % b,
+        "min": min,
+        "max": max,
+        "deg": math.degrees,
+        "rad": math.radians,
     }
     return eval(expr, {"__builtins__": {}}, allowed_names)
 
@@ -99,11 +144,12 @@ async def say_hello(interaction: discord.Interaction):
 @bot.tree.command(name="printer", description="Prints what you say")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(printer="Type whatever you want to print :3")
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
 
 
-@bot.tree.command(name="support", description="Support my creator ^^")
+@bot.tree.command(name="support", description="Support my creator! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def embeder(interaction: discord.Interaction):
@@ -116,6 +162,7 @@ async def embeder(interaction: discord.Interaction):
 @bot.tree.command(name="hug", description="Send hugs! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(user="Who wants the huggiesss? ^^")
 async def huger(interaction: discord.Interaction, user: discord.User):
     hug_messages = [
         f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
@@ -148,6 +195,7 @@ async def huger(interaction: discord.Interaction, user: discord.User):
 @bot.tree.command(name="praise", description="Praises the targeted person")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(user="Who to praise? :3")
 async def praiser(interaction: discord.Interaction, user: discord.User):
     praise_messages = [
         f"Hehe ^^\n{user.mention} is such a cutie! ^^ {ralsei_happy}",
@@ -216,6 +264,7 @@ async def gamble(interaction: discord.Interaction):
 @bot.tree.command(name="silly", description="Silly :P")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(user="Who to silly? :?")
 async def silliness(interaction: discord.Interaction, user: discord.User = None):
     if not user:
         silly = ["Bleh",
@@ -237,6 +286,7 @@ async def silliness(interaction: discord.Interaction, user: discord.User = None)
 @bot.tree.command(name="permahug", description="Permanently hug someone ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(user="Who wants to be perma hugged ^?^")
 async def perma_huger(interaction: discord.Interaction, user: discord.User):
     hug_messages = [
         f"{interaction.user.mention} permanently hugs {user.mention} {kralsei_hug}{kralsei_hug_blushing}",
@@ -282,9 +332,10 @@ async def hug_everyone(interaction: discord.Interaction):
 @bot.tree.command(name="calculate", description="Type equations to calculate")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(equation="Type \"list\" to get a list of functions")
 async def calculator(interaction: discord.Interaction, equation: str):
     try:
-      await interaction.response.send_message(f"{equation} = {calculate(equation)}")
+      await interaction.response.send_message(f"{equation} =\n{calculate(equation)}")
     except Exception as e:
       await interaction.response.send_message(f"Error: {e}")
 
