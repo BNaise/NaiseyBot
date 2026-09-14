@@ -264,7 +264,7 @@ async def gamble(interaction: discord.Interaction):
 @bot.tree.command(name="silly", description="Silly :P")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(user="Who to silly? :?")
+@app_commands.describe(user="Who to silly? ^?^")
 async def silliness(interaction: discord.Interaction, user: discord.User = None):
     if not user:
         silly = ["Bleh",
@@ -276,8 +276,11 @@ async def silliness(interaction: discord.Interaction, user: discord.User = None)
                  f"{kris_wiggle}"]
     else:
         silly = [f"Ummmm {user.mention}! {interaction.user.mention} is purring at you {ralsei_happy}",
-                 f"{user.mention}! {interaction.user.mention} is pulling your hair {ralsei_cute_evil}",
-                 f"{user.mention}! {interaction.user.mention} wants to.. eat you? {ralsei_shocked}"]
+                 f"Hehe {user.mention}! {interaction.user.mention} is meowing at you :3 {ralsei_happy}",
+                 f"{interaction.user.mention} is meowing at {user.mention}! ~ ^w^ ~",
+                 f"{user.mention} is getting nuzzled by {interaction.user.mention} {kralsei_hug_blushing}",
+                 f"{interaction.user.mention} is gently patting {user.mention}'s head {ralsei_happy}",
+                 f"{user.mention}! {interaction.user.mention} tackles you with a hug :3 {ralsei_happy}{kralsei_hug}"]
 
     choice = random.choice(silly)
 
