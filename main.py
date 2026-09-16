@@ -275,7 +275,6 @@ async def gamble(interaction: discord.Interaction):
 @app_commands.describe(who="Who to silly? ^?^")
 async def silliness(interaction: discord.Interaction, who: discord.User = None):
 
-    target = who.mention
     user = interaction.user.mention
 
     if not who:
@@ -287,6 +286,7 @@ async def silliness(interaction: discord.Interaction, who: discord.User = None):
                  "Ueueleuleuleue!",
                  f"{kris_wiggle}"]
     else:
+        target = who.mention
         silly = [f"Ummmm {target}! {user} is purring at you {ralsei_happy}",
                  f"Hehe {target}! {user} is meowing at you :3 {ralsei_happy}",
                  f"{user} is meowing at {target}! ~ ^w^ ~",
