@@ -162,32 +162,36 @@ async def embeder(interaction: discord.Interaction):
 @bot.tree.command(name="hug", description="Send hugs! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(user="Who wants the huggiesss? ^^")
-async def huger(interaction: discord.Interaction, user: discord.User):
+@app_commands.describe(who="Who wants the huggiesss? ^^")
+async def huger(interaction: discord.Interaction, who: discord.User):
+
+    target = who.mention
+    user = interaction.user.mention
+
     hug_messages = [
-        f"{interaction.user.mention} tightly hugs {user.mention} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"{user.mention} got absolutely loved and hugged by {interaction.user.mention} {kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
-        f"{interaction.user.mention} hugs {user.mention} so much that they won't let go :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"Hey {user.mention}! {interaction.user.mention} just sent you a ton of hugs! ^^ {kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
-        f"{interaction.user.mention} gives {user.mention} a big warm hug! {vulkin_happy}{kralsei_hug}",
-        f"{interaction.user.mention} wraps their arms around {user.mention}! {kralsei_hug_blushing}",
-        f"{interaction.user.mention} gives {user.mention} a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}",
-        f"{interaction.user.mention} hugs {user.mention} with all their might! {ralsei_happy}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} pulls {user.mention} into a cozy hug! {kralsei_hug_blushing}",
-        f"{interaction.user.mention} gives {user.mention} a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}{ralsei_heart}",
-        f"{interaction.user.mention} hugs {user.mention}. Awwww! {ralsei_happy}{kralsei_hug}",
-        f"{interaction.user.mention} has hugged {user.mention}. They are now legally required to be happy. {ralsei_happy}{kralsei_hug_blushing}",
-        f"HUG DETECTED! {interaction.user.mention} has hugged {user.mention}! {kralsei_hug}{ralsei_heart}",
-        f"{interaction.user.mention} launches themselves at {user.mention} with a hug! {kralsei_hug_blushing}",
-        f"{interaction.user.mention} and {user.mention} are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} sends a hug directly to {user.mention}'s soul. {kralsei_hug_blushing}{ralsei_heart}",
-        f"{interaction.user.mention} hugs {user.mention}. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
+        f"{user} tightly hugs {target} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"{target} got absolutely loved and hugged by {user} {kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
+        f"{user} hugs {target} so much that they won't let go :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"Hey {target}! {user} just sent you a ton of hugs! ^^ {kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
+        f"{user} gives {target} a big warm hug! {vulkin_happy}{kralsei_hug}",
+        f"{user} wraps their arms around {target}! {kralsei_hug_blushing}",
+        f"{user} gives {target} a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}",
+        f"{user} hugs {target} with all their might! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} pulls {target} into a cozy hug! {kralsei_hug_blushing}",
+        f"{user} gives {target} a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}{ralsei_heart}",
+        f"{user} hugs {target}. Awwww! {ralsei_happy}{kralsei_hug}",
+        f"{user} has hugged {target}. They are now legally required to be happy. {ralsei_happy}{kralsei_hug_blushing}",
+        f"HUG DETECTED! {user} has hugged {target}! {kralsei_hug}{ralsei_heart}",
+        f"{user} launches themselves at {target} with a hug! {kralsei_hug_blushing}",
+        f"{user} and {target} are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} sends a hug directly to {target}'s soul. {kralsei_hug_blushing}{ralsei_heart}",
+        f"{user} hugs {target}. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
     ]
 
     choice = random.choice(hug_messages)
 
     if interaction.user == user:
-        await interaction.response.send_message(f"{interaction.user.mention} gave themselves a hug")
+        await interaction.response.send_message(f"{user} gave themselves a hug")
     else:
         await interaction.response.send_message(choice)
 
@@ -195,17 +199,21 @@ async def huger(interaction: discord.Interaction, user: discord.User):
 @bot.tree.command(name="praise", description="Praises the targeted person")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(user="Who to praise? :3")
-async def praiser(interaction: discord.Interaction, user: discord.User):
+@app_commands.describe(who="Who to praise? :3")
+async def praiser(interaction: discord.Interaction, who: discord.User):
+
+    target = who.mention
+    # user = interaction.user.mention
+
     praise_messages = [
-        f"Hehe ^^\n{user.mention} is such a cutie! ^^ {ralsei_happy}",
-        f"Awwwww :3\n{user.mention} is soooo cute! :33 {ralsei_cute}",
-        f"{user.mention}! you are so adorable! :3 {ralsei_cute}",
-        f"{user.mention}! you are sooo awesome! :3 {ralsei_happy}",
-        f"Awwwww! :3 isn't {user.mention} sooooo cute? {ralsei_happy}",
-        f"{user.mention} is so cute! :3 {ralsei_cute}",
-        f"{user.mention} is so cute that I can hug them endlessly! {ralsei_happy}",
-        f"{user.mention} is such a cutie patooti :3 {ralsei_happy}"
+        f"Hehe ^^\n{target} is such a cutie! ^^ {ralsei_happy}",
+        f"Awwwww :3\n{target} is soooo cute! :33 {ralsei_cute}",
+        f"{target}! you are so adorable! :3 {ralsei_cute}",
+        f"{target}! you are sooo awesome! :3 {ralsei_happy}",
+        f"Awwwww! :3 isn't {target} sooooo cute? {ralsei_happy}",
+        f"{target} is so cute! :3 {ralsei_cute}",
+        f"{target} is so cute that I can hug them endlessly! {ralsei_happy}",
+        f"{target} is such a cutie patooti :3 {ralsei_happy}"
     ]
     await interaction.response.send_message(random.choice(praise_messages))
 
@@ -264,9 +272,13 @@ async def gamble(interaction: discord.Interaction):
 @bot.tree.command(name="silly", description="Silly :P")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(user="Who to silly? ^?^")
-async def silliness(interaction: discord.Interaction, user: discord.User = None):
-    if not user:
+@app_commands.describe(who="Who to silly? ^?^")
+async def silliness(interaction: discord.Interaction, who: discord.User = None):
+
+    target = who.mention
+    user = interaction.user.mention
+
+    if not who:
         silly = ["Bleh",
                  "Meow :3",
                  "Mrewwww :3",
@@ -275,12 +287,12 @@ async def silliness(interaction: discord.Interaction, user: discord.User = None)
                  "Ueueleuleuleue!",
                  f"{kris_wiggle}"]
     else:
-        silly = [f"Ummmm {user.mention}! {interaction.user.mention} is purring at you {ralsei_happy}",
-                 f"Hehe {user.mention}! {interaction.user.mention} is meowing at you :3 {ralsei_happy}",
-                 f"{interaction.user.mention} is meowing at {user.mention}! ~ ^w^ ~",
-                 f"{user.mention} is getting nuzzled by {interaction.user.mention} {kralsei_hug_blushing}",
-                 f"{interaction.user.mention} is gently patting {user.mention}'s head {ralsei_happy}",
-                 f"{user.mention}! {interaction.user.mention} tackles you with a hug :3 {ralsei_happy}{kralsei_hug}"]
+        silly = [f"Ummmm {target}! {user} is purring at you {ralsei_happy}",
+                 f"Hehe {target}! {user} is meowing at you :3 {ralsei_happy}",
+                 f"{user} is meowing at {target}! ~ ^w^ ~",
+                 f"{target} is getting nuzzled by {user} {kralsei_hug_blushing}",
+                 f"{user} is gently patting {target}'s head {ralsei_happy}",
+                 f"{target}! {user} tackles you with a hug :3 {ralsei_happy}{kralsei_hug}"]
 
     choice = random.choice(silly)
 
@@ -289,20 +301,24 @@ async def silliness(interaction: discord.Interaction, user: discord.User = None)
 @bot.tree.command(name="permahug", description="Permanently hug someone ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(user="Who wants to be perma hugged ^?^")
-async def perma_huger(interaction: discord.Interaction, user: discord.User):
+@app_commands.describe(who="Who wants to be perma hugged ^?^")
+async def perma_huger(interaction: discord.Interaction, who: discord.User):
+
+    target = who.mention
+    user = interaction.user.mention
+
     hug_messages = [
-        f"{interaction.user.mention} permanently hugs {user.mention} {kralsei_hug}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} hugs {user.mention} permanently {kralsei_hug_blushing}",
-        f"{interaction.user.mention} hugs {user.mention} and they won't let go, ever {kralsei_hug_blushing}",
-        f"{interaction.user.mention} hugs {user.mention} and never let's go until the end of time and beyond {kralsei_hug_blushing}",
-        f"{interaction.user.mention} has trapped {user.mention} with an eternal hug {kralsei_hug}"
+        f"{user} permanently hugs {target} {kralsei_hug}{kralsei_hug_blushing}",
+        f"{user} hugs {target} permanently {kralsei_hug_blushing}",
+        f"{user} hugs {target} and they won't let go, ever {kralsei_hug_blushing}",
+        f"{user} hugs {target} and never let's go until the end of time and beyond {kralsei_hug_blushing}",
+        f"{user} has trapped {target} with an eternal hug {kralsei_hug}"
     ]
 
     choice = random.choice(hug_messages)
 
-    if interaction.user == user:
-        await interaction.response.send_message(f"{interaction.user.mention} you can't just do that!")
+    if user == target:
+        await interaction.response.send_message(f"{user} you can't just do that!")
     else:
         await interaction.response.send_message(choice)
 
@@ -313,19 +329,19 @@ async def hug_everyone(interaction: discord.Interaction):
 
     hug_messages = \
     [
-        f"{interaction.user.mention} tightly hugs @everyone :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"Hey @everyone! {interaction.user.mention} just sent you guys a ton of hugs! ^^ {ralsei_heart}{kralsei_hug_blushing}{ralsei_happy}",
-        f"{interaction.user.mention} gives @everyone a big warm hug! {vulkin_happy}{kralsei_hug}",
-        f"{interaction.user.mention} wraps their arms around @everyone! {kralsei_hug_blushing}",
-        f"{interaction.user.mention} gives @everyone a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}{ralsei_heart}",
-        f"{interaction.user.mention} hugs @everyone with all their might! {ralsei_happy}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} pulls @everyone into a cozy hug! {kralsei_hug_blushing}",
-        f"{interaction.user.mention} gives @everyone a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} hugs @everyone. Awwww! {ralsei_happy}{kralsei_hug}{ralsei_heart}",
-        f"HUG DETECTED! {interaction.user.mention} has hugged @everyone! {kralsei_hug}",
-        f"{interaction.user.mention} and @everyone are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
-        f"{interaction.user.mention} sends a hug directly to @everyone's soul. {kralsei_hug_blushing}{ralsei_heart}",
-        f"{interaction.user.mention} hugs @everyone. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
+        f"{user} tightly hugs @everyone :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"Hey @everyone! {user} just sent you guys a ton of hugs! ^^ {ralsei_heart}{kralsei_hug_blushing}{ralsei_happy}",
+        f"{user} gives @everyone a big warm hug! {vulkin_happy}{kralsei_hug}",
+        f"{user} wraps their arms around @everyone! {kralsei_hug_blushing}",
+        f"{user} gives @everyone a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}{ralsei_heart}",
+        f"{user} hugs @everyone with all their might! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} pulls @everyone into a cozy hug! {kralsei_hug_blushing}",
+        f"{user} gives @everyone a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} hugs @everyone. Awwww! {ralsei_happy}{kralsei_hug}{ralsei_heart}",
+        f"HUG DETECTED! {user} has hugged @everyone! {kralsei_hug}",
+        f"{user} and @everyone are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} sends a hug directly to @everyone's soul. {kralsei_hug_blushing}{ralsei_heart}",
+        f"{user} hugs @everyone. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
     ]
 
     choice = random.choice(hug_messages)
