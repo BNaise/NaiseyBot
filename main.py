@@ -327,6 +327,8 @@ async def perma_huger(interaction: discord.Interaction, who: discord.User):
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def hug_everyone(interaction: discord.Interaction):
 
+    user = interaction.user.mention
+
     hug_messages = \
     [
         f"{user} tightly hugs @everyone :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
