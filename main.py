@@ -1,5 +1,8 @@
 import os
 import random
+import re
+import math
+import cmath
 
 import discord
 from discord.ext import commands
@@ -7,9 +10,6 @@ from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
 import keep_alive
-
-import re
-import math
 
 load_dotenv()
 
@@ -65,37 +65,38 @@ def calculate(expr):
             "mod(a, b)",
             "min(a, b, ...) max(a, b, ...)",
             "deg(x) rad(x)",
-            "pi  e",
+            "pi  e  i",
         ])
     expr = expr.replace('x', '*').replace('X', '*').replace('^', '**')
     if not re.fullmatch(r'[\d+\-*/().\s^a-zA-Z,]+', expr):
         raise ValueError("Invalid characters in expression")
     allowed_names = {
-        "sqrt": math.sqrt,
+        "sqrt": cmath.sqrt,
         # radians (standard)
-        "sin": math.sin,
-        "cos": math.cos,
-        "tan": math.tan,
-        "asin": math.asin,
-        "acos": math.acos,
-        "atan": math.atan,
+        "sin": cmath.sin,
+        "cos": cmath.cos,
+        "tan": cmath.tan,
+        "asin": cmath.asin,
+        "acos": cmath.acos,
+        "atan": cmath.atan,
         # degrees
-        "sind": lambda x: math.sin(math.radians(x)),
-        "cosd": lambda x: math.cos(math.radians(x)),
-        "tand": lambda x: math.tan(math.radians(x)),
-        "asind": lambda x: math.degrees(math.asin(x)),
-        "acosd": lambda x: math.degrees(math.acos(x)),
-        "atand": lambda x: math.degrees(math.atan(x)),
+        "sind": lambda x: cmath.sin(x * cmath.pi / 180),
+        "cosd": lambda x: cmath.cos(x * cmath.pi / 180),
+        "tand": lambda x: cmath.tan(x * cmath.pi / 180),
+        "asind": lambda x: cmath.asin(x) * 180 / cmath.pi,
+        "acosd": lambda x: cmath.acos(x) * 180 / cmath.pi,
+        "atand": lambda x: cmath.atan(x) * 180 / cmath.pi,
         # hyperbolic
-        "sinh": math.sinh,
-        "cosh": math.cosh,
-        "tanh": math.tanh,
-        "log": math.log,
-        "log10": math.log10,
-        "log2": math.log2,
-        "exp": math.exp,
-        "pi": math.pi,
-        "e": math.e,
+        "sinh": cmath.sinh,
+        "cosh": cmath.cosh,
+        "tanh": cmath.tanh,
+        "log": cmath.log,
+        "log10": cmath.log10,
+        "log2": lambda x: cmath.log(x, 2),
+        "exp": cmath.exp,
+        "pi": cmath.pi,
+        "e": cmath.e,
+        "i": 1j,
         "abs": abs,
         "factorial": math.factorial,
         "round": round,
@@ -107,8 +108,8 @@ def calculate(expr):
         "mod": lambda a, b: a % b,
         "min": min,
         "max": max,
-        "deg": math.degrees,
-        "rad": math.radians,
+        "deg": lambda x: x * 180 / cmath.pi,
+        "rad": lambda x: x * cmath.pi / 180,
     }
     return eval(expr, {"__builtins__": {}}, allowed_names)
 
