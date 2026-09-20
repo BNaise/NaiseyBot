@@ -181,7 +181,6 @@ async def huger(interaction: discord.Interaction, who: discord.User):
         f"{user} pulls {target} into a cozy hug! {kralsei_hug_blushing}",
         f"{user} gives {target} a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}{ralsei_heart}",
         f"{user} hugs {target}. Awwww! {ralsei_happy}{kralsei_hug}",
-        f"{user} has hugged {target}. They are now legally required to be happy. {ralsei_happy}{kralsei_hug_blushing}",
         f"HUG DETECTED! {user} has hugged {target}! {kralsei_hug}{ralsei_heart}",
         f"{user} launches themselves at {target} with a hug! {kralsei_hug_blushing}",
         f"{user} and {target} are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
