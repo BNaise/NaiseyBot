@@ -10,8 +10,12 @@ from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
 import keep_alive
+import main2
 
 load_dotenv()
+
+debug = False
+# debug = True
 
 # Emoji's
 kralsei_hug = "<:kralsei_hug:1534290578974445780>"
@@ -169,7 +173,8 @@ async def huger(interaction: discord.Interaction, who: discord.User):
     target = who.mention
     user = interaction.user.mention
 
-    hug_messages = [
+    messages = \
+    [
         f"{user} tightly hugs {target} :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"{target} got absolutely loved and hugged by {user} {kralsei_hug}{kralsei_hug_blushing}{ralsei_heart}",
         f"{user} hugs {target} so much that they won't let go :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
@@ -189,7 +194,7 @@ async def huger(interaction: discord.Interaction, who: discord.User):
         f"{user} hugs {target}. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
     ]
 
-    choice = random.choice(hug_messages)
+    choice = random.choice(messages)
 
     if interaction.user == user:
         await interaction.response.send_message(f"{user} gave themselves a hug")
@@ -204,9 +209,9 @@ async def huger(interaction: discord.Interaction, who: discord.User):
 async def praiser(interaction: discord.Interaction, who: discord.User):
 
     target = who.mention
-    # user = interaction.user.mention
 
-    praise_messages = [
+    messages = \
+    [
         f"Hehe ^^\n{target} is such a cutie! ^^ {ralsei_happy}",
         f"Awwwww :3\n{target} is soooo cute! :33 {ralsei_cute}",
         f"{target}! you are so adorable! :3 {ralsei_cute}",
@@ -216,14 +221,15 @@ async def praiser(interaction: discord.Interaction, who: discord.User):
         f"{target} is so cute that I can hug them endlessly! {ralsei_happy}",
         f"{target} is such a cutie patooti :3 {ralsei_happy}"
     ]
-    await interaction.response.send_message(random.choice(praise_messages))
+    await interaction.response.send_message(random.choice(messages))
 
 
 @bot.tree.command(name="deltarot", description="Says Deltarots")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def deltarot(interaction: discord.Interaction):
-    deltarots = [
+    deltarots = \
+    [
         "JARONA!",
         "Freedom’s just a penumbra phantasm for big shots with black knives about the world revolving around the hammer of justice sealed away with cutie mew mew magic at the pirate dojo in my castle town during the sunset of seven suns.",
         "FREEDOM",
@@ -265,8 +271,11 @@ async def deltarot(interaction: discord.Interaction):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def gamble(interaction: discord.Interaction):
-    gamble = ["I can't stop winning!",
-              "Aww dang it!"]
+    gamble = \
+    [
+        "I can't stop winning!",
+        "Aww dang it!"
+    ]
     await interaction.response.send_message(random.choice(gamble))
 
 
@@ -279,21 +288,27 @@ async def silliness(interaction: discord.Interaction, who: discord.User = None):
     user = interaction.user.mention
 
     if not who:
-        silly = ["Bleh",
+        silly = \
+            [
+                 "Bleh",
                  "Meow :3",
                  "Mrewwww :3",
                  "Nyaaaaa~",
                  "Nyon!",
                  "Ueueleuleuleue!",
-                 f"{kris_wiggle}"]
+                 f"{kris_wiggle}"
+            ]
     else:
         target = who.mention
-        silly = [f"Ummmm {target}! {user} is purring at you {ralsei_happy}",
+        silly = \
+            [
+                 f"Ummmm {target}! {user} is purring at you {ralsei_happy}",
                  f"Hehe {target}! {user} is meowing at you :3 {ralsei_happy}",
                  f"{user} is meowing at {target}! ~ ^w^ ~",
                  f"{target} is getting nuzzled by {user} {kralsei_hug_blushing}",
                  f"{user} is gently patting {target}'s head {ralsei_happy}",
-                 f"{target}! {user} tackles you with a hug :3 {ralsei_happy}{kralsei_hug}"]
+                 f"{target}! {user} tackles you with a hug :3 {ralsei_happy}{kralsei_hug}"
+            ]
 
     choice = random.choice(silly)
 
@@ -308,7 +323,8 @@ async def perma_huger(interaction: discord.Interaction, who: discord.User):
     target = who.mention
     user = interaction.user.mention
 
-    hug_messages = [
+    messages = \
+    [
         f"{user} permanently hugs {target} {kralsei_hug}{kralsei_hug_blushing}",
         f"{user} hugs {target} permanently {kralsei_hug_blushing}",
         f"{user} hugs {target} and they won't let go, ever {kralsei_hug_blushing}",
@@ -316,7 +332,7 @@ async def perma_huger(interaction: discord.Interaction, who: discord.User):
         f"{user} has trapped {target} with an eternal hug {kralsei_hug}"
     ]
 
-    choice = random.choice(hug_messages)
+    choice = random.choice(messages)
 
     if user == target:
         await interaction.response.send_message(f"{user} you can't just do that!")
@@ -330,7 +346,7 @@ async def hug_everyone(interaction: discord.Interaction):
 
     user = interaction.user.mention
 
-    hug_messages = \
+    messages = \
     [
         f"{user} tightly hugs @everyone :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
         f"Hey @everyone! {user} just sent you guys a ton of hugs! ^^ {ralsei_heart}{kralsei_hug_blushing}{ralsei_happy}",
@@ -347,7 +363,7 @@ async def hug_everyone(interaction: discord.Interaction):
         f"{user} hugs @everyone. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
     ]
 
-    choice = random.choice(hug_messages)
+    choice = random.choice(messages)
 
     await interaction.response.send_message(choice)
 
@@ -361,6 +377,10 @@ async def calculator(interaction: discord.Interaction, equation: str):
     except Exception as e:
       await interaction.response.send_message(f"Error: {e}")
 
-keep_alive.keep_alive()
+if not debug:
+    keep_alive.keep_alive()
 
-bot.run(os.getenv('DISCORD_TOKEN'))
+if not debug:
+    bot.run(os.getenv('DISCORD_TOKEN'))
+else:
+    main2.debug()
