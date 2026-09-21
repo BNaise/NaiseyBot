@@ -372,9 +372,9 @@ async def hug_everyone(interaction: discord.Interaction):
 @app_commands.describe(equation="Type \"list\" to get a list of functions")
 async def calculator(interaction: discord.Interaction, equation: str):
     if equation == "9+10":
-        interaction.response.send_message(f"{equation} =\n21")
-    if equation == "9 + 10":
-        interaction.response.send_message(f"{equation} =\n21")
+        await interaction.response.send_message(f"{equation} =\n21")
+    elif equation == "9 + 10":
+        await interaction.response.send_message(f"{equation} =\n21")
     else:
         try:
           await interaction.response.send_message(f"{equation} =\n{calculate(equation)}")
