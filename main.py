@@ -371,10 +371,15 @@ async def hug_everyone(interaction: discord.Interaction):
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(equation="Type \"list\" to get a list of functions")
 async def calculator(interaction: discord.Interaction, equation: str):
-    try:
-      await interaction.response.send_message(f"{equation} =\n{calculate(equation)}")
-    except Exception as e:
-      await interaction.response.send_message(f"Error: {e}")
+    if equation == "9+10":
+        interaction.response.send_message(f"{equation} =\n21")
+    if equation == "9 + 10":
+        interaction.response.send_message(f"{equation} =\n21")
+    else:
+        try:
+          await interaction.response.send_message(f"{equation} =\n{calculate(equation)}")
+        except Exception as e:
+          await interaction.response.send_message(f"Error: {e}")
 
 if not debug:
     keep_alive.keep_alive()
