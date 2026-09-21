@@ -244,7 +244,6 @@ async def deltarot(interaction: discord.Interaction):
         "Mike...",
         "1997",
         "1225",
-        "Rip Onion :'(",
         "HERE I COME SANFRANDISCOOOOOOOO!",
         "SUSTINGUS",
         "Hey guys, I think I found a glue!",
@@ -380,6 +379,13 @@ async def calculator(interaction: discord.Interaction, equation: str):
           await interaction.response.send_message(f"{equation} =\n{calculate(equation)}")
         except Exception as e:
           await interaction.response.send_message(f"Error: {e}")
+
+@bot.tree.command(name="bored", description="Bored -_-")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+async def say_hello(interaction: discord.Interaction):
+    file = discord.File("files/bernii_bored.gif")
+    await interaction.response.send_message(file=file)
 
 if not debug:
     keep_alive.keep_alive()
