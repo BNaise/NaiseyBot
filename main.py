@@ -409,7 +409,7 @@ async def say_hello(interaction: discord.Interaction, filename: str = None):
     if filename and filename.lower() == "list":
         embed = discord.Embed(
             title="Flowery clips",
-            description="\n".join(f"- {f}" for f in files),
+            description="\n".join(f"- `{f}`" for f in files),
             color=0x52F0EF,
         )
         await interaction.response.send_message(embed=embed)
