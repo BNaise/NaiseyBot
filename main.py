@@ -10,12 +10,8 @@ from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
 import keep_alive
-import main2
 
 load_dotenv()
-
-debug = False
-# debug = True
 
 # Emoji's
 kralsei_hug = "<:kralsei_hug:1534290578974445780>"
@@ -195,7 +191,7 @@ async def huger(interaction: discord.Interaction, who: discord.User):
 
     choice = random.choice(messages)
 
-    if interaction.user == user:
+    if target == user:
         await interaction.response.send_message(f"{user} gave themselves a hug")
     else:
         await interaction.response.send_message(choice)
@@ -209,6 +205,8 @@ async def praiser(interaction: discord.Interaction, who: discord.User):
 
     target = who.mention
 
+    user = interaction.user.mention
+
     messages = \
     [
         f"Hehe ^^\n{target} is such a cutie! ^^ {ralsei_happy}",
@@ -220,7 +218,13 @@ async def praiser(interaction: discord.Interaction, who: discord.User):
         f"{target} is so cute that I can hug them endlessly! {ralsei_happy}",
         f"{target} is such a cutie patooti :3 {ralsei_happy}"
     ]
-    await interaction.response.send_message(random.choice(messages))
+
+    choice = random.choice(messages)
+
+    if target == user:
+        await interaction.response.send_message(f"{user} gave themselves a hug")
+    else:
+        await interaction.response.send_message(choice)
 
 
 @bot.tree.command(name="deltarot", description="Says Deltarots")
@@ -387,10 +391,65 @@ async def say_hello(interaction: discord.Interaction):
     file = discord.File("files/bernii_bored.gif")
     await interaction.response.send_message(file=file)
 
-if not debug:
-    keep_alive.keep_alive()
+@bot.tree.command(name="roll", description="Rolls a random number between the Starting number and Finishing number")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(start="Enter starting number (default is 1)")
+@app_commands.describe(finish="Enter finishing number")
+async def roll(interaction: discord.Interaction, finish: int, start: int = 1):
+    if finish:
+        if finish >= start:
+            random_number = random.randint(start, finish)
+            await interaction.response.send_message(str(random_number))
+        elif finish < start:
+            await interaction.response.send_message("Finishing number should be bigger then starting number.")
+    else:
+        await interaction.response.send_message("Please enter a number")
 
-if not debug:
-    bot.run(os.getenv('DISCORD_TOKEN'))
-else:
-    main2.debug()
+@bot.tree.command(name="kiss", description="Kiss :3")
+async def kiss(interaction: discord.Interaction, who: discord.User):
+    user = interaction.user.mention
+
+    target = who.mention
+
+    messages = \
+        [
+            f"{user} kissed {target}! They're so cute! {ralsei_happy}",
+            f"OMG- GUYS- {user} JUST KISSED {target}!!!! {ralsei_cute}",
+            f"{user} **VIOLENTLY** pulled {target} to them and **SMOOCHED** them on the **LIPS**, not letting **ANYONE ELSE** in {ralsei_cute_evil}",
+            f"Hehehehe, {user} gave {target} a little smooooch! {ralsei_happy}"
+        ]
+
+    choice = random.choice(messages)
+
+    if target == user:
+        await interaction.response.send_message(f"{user} kissed themselves? ...how? {ralsei_shocked}")
+    elif who:
+        await interaction.response.send_message(choice)
+
+@bot.tree.command(name="cheekkiss", description="Cheek kiss :3")
+async def kiss(interaction: discord.Interaction, who: discord.User):
+    user = interaction.user.mention
+
+    target = who.mention
+
+    messages = \
+        [
+            f"{user} gave {target} a cute kiss on the cheek! Awwhh! :3 {ralsei_happy}",
+            f"{user} gave {target} a little cheek smooch! ^^ {ralsei_happy}",
+            f"{user} not so violently pulled {target} to them and pekced them on the cheek, letting everyone else in ^w^ {ralsei_happy}",
+            f"Hey guys, {user} gave {target} a little cheek smooch!!! :3 {ralsei_cute}",
+            f"Hehehe {user} is so cute, they just kissed {target} on the cheek ^^ {ralsei_cute}",
+            f"Hehehe- {user} gave {target} a peck on the cheek!!!! :3 {ralsei_heart}"
+        ]
+
+    choice = random.choice(messages)
+
+    if target == user:
+        await interaction.response.send_message(f"{user} kissed themselves on the cheek? ...how? {ralsei_shocked}")
+    elif who:
+        await interaction.response.send_message(choice)
+
+keep_alive.keep_alive()
+
+bot.run(os.getenv('DISCORD_TOKEN'))
