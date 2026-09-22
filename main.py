@@ -409,7 +409,7 @@ async def roll(interaction: discord.Interaction, finish: int, start: int = 1):
 @bot.tree.command(name="kiss", description="Kiss :3")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(who="Who to cheek kiss? :3")
+@app_commands.describe(who="Who to kiss? :3")
 async def kiss(interaction: discord.Interaction, who: discord.User):
     user = interaction.user.mention
 
@@ -433,7 +433,7 @@ async def kiss(interaction: discord.Interaction, who: discord.User):
 @bot.tree.command(name="cheekkiss", description="Cheek kiss :3")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(who="Who to kiss? :3")
+@app_commands.describe(who="Who to cheek kiss? :3")
 async def kiss(interaction: discord.Interaction, who: discord.User):
     user = interaction.user.mention
 
