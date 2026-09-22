@@ -302,13 +302,22 @@ async def hug_everyone(interaction: discord.Interaction):
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(equation="Type \"list\" to get a list of functions")
 async def calculator(interaction: discord.Interaction, equation: str):
+
+    bruh = ""
+    result = funcs.calculate(equation)
+
+    if result == 67:
+        bruh = " (Seriously bruh? -_-)"
+    elif result == 69:
+        bruh = " (Seriously bruh? -_-)"
+
     if equation == "9+10":
         await interaction.response.send_message(f"{equation} =\n21")
     elif equation == "9 + 10":
         await interaction.response.send_message(f"{equation} =\n21")
     else:
         try:
-          await interaction.response.send_message(f"{equation} =\n{funcs.calculate(equation)}")
+          await interaction.response.send_message(f"{equation} =\n{result}{bruh}")
         except Exception as e:
           await interaction.response.send_message(f"Error: {e}")
 
@@ -383,6 +392,19 @@ async def kiss(interaction: discord.Interaction, who: discord.User):
         await interaction.response.send_message(f"{user} kissed themselves on the cheek? ...how? {ralsei_shocked}")
     elif who:
         await interaction.response.send_message(choice)
+
+flowery_folder = "files/audio/flowery_voice_clips/"
+
+@bot.tree.command(name="flowery", description="Flowery voice clips :3")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+async def say_hello(interaction: discord.Interaction):
+    files = os.listdir(flowery_folder)
+
+    choice = random.choice(files)
+    path = os.path.join(flowery_folder, choice)
+
+    await interaction.response.send_message(file=discord.File(path, filename=choice))
 
 funcs.keep_alive()
 
