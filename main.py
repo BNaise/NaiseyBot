@@ -398,10 +398,38 @@ flowery_folder = "files/audio/flowery_voice_clips/"
 @bot.tree.command(name="flowery", description="Flowery voice clips :3")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def say_hello(interaction: discord.Interaction):
+@app_commands.describe(filename="A specific file or voice clip (type \"list\" for list of files)")
+async def say_hello(interaction: discord.Interaction, filename: str = None):
     files = os.listdir(flowery_folder)
 
-    choice = random.choice(files)
+    if not files:
+        await interaction.response.send_message("No files in the folder!")
+        return
+
+    if filename and filename.lower() == "list":
+        embed = discord.Embed(
+            title="Flowery clips",
+            description="\n".join(f"- {f}" for f in files),
+            color=0x52F0EF,
+        )
+        await interaction.response.send_message(embed=embed)
+        return
+
+    if filename:
+        search = filename.lower()
+        matches = [
+            f for f in files
+            if f.lower() == search or os.path.splitext(f)[0].lower() == search
+        ]
+
+        if not matches:
+            await interaction.response.send_message(f"Couldn't find `{filename}` in the folder.")
+            return
+
+        choice = matches[0]
+    else:
+        choice = random.choice(files)
+
     path = os.path.join(flowery_folder, choice)
 
     await interaction.response.send_message(file=discord.File(path, filename=choice))
