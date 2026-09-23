@@ -92,9 +92,9 @@ async def embeder(interaction: discord.Interaction):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(who="Who wants the huggiesss? ^^")
-async def huger(interaction: discord.Interaction, who: discord.User):
+async def huger(interaction: discord.Interaction, who: str):
 
-    target = who.mention
+    target = who
     user = interaction.user.mention
 
     messages = \
@@ -129,9 +129,9 @@ async def huger(interaction: discord.Interaction, who: discord.User):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(who="Who to praise? :3")
-async def praiser(interaction: discord.Interaction, who: discord.User):
+async def praiser(interaction: discord.Interaction, who: str):
 
-    target = who.mention
+    target = who
 
     user = interaction.user.mention
 
@@ -213,7 +213,7 @@ async def gamble(interaction: discord.Interaction):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(who="Who to silly? ^?^")
-async def silliness(interaction: discord.Interaction, who: discord.User = None):
+async def silliness(interaction: discord.Interaction, who: str = None):
 
     user = interaction.user.mention
 
@@ -229,7 +229,7 @@ async def silliness(interaction: discord.Interaction, who: discord.User = None):
                  f"{kris_wiggle}"
             ]
     else:
-        target = who.mention
+        target = who
         silly = \
             [
                  f"Ummmm {target}! {user} is purring at you {ralsei_happy}",
@@ -248,9 +248,9 @@ async def silliness(interaction: discord.Interaction, who: discord.User = None):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(who="Who wants to be perma hugged ^?^")
-async def perma_huger(interaction: discord.Interaction, who: discord.User):
+async def perma_huger(interaction: discord.Interaction, who: str):
 
-    target = who.mention
+    target = who
     user = interaction.user.mention
 
     messages = \
@@ -347,10 +347,10 @@ async def roll(interaction: discord.Interaction, finish: int, start: int = 1):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(who="Who to kiss? :3")
-async def kiss(interaction: discord.Interaction, who: discord.User):
+async def kiss(interaction: discord.Interaction, who: str):
     user = interaction.user.mention
 
-    target = who.mention
+    target = who
 
     messages = \
         [
@@ -371,10 +371,10 @@ async def kiss(interaction: discord.Interaction, who: discord.User):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(who="Who to cheek kiss? :3")
-async def kiss(interaction: discord.Interaction, who: discord.User):
+async def cheekkiss(interaction: discord.Interaction, who: str):
     user = interaction.user.mention
 
-    target = who.mention
+    target = who
 
     messages = \
         [
