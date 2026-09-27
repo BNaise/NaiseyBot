@@ -1,5 +1,4 @@
-It's a silly little fluxer bot for silly little things like hugging, cuddling, petting etc.
-[Invite it from here](https://web.canary.fluxer.app/oauth2/authorize?client_id=1548951710439833600&scope=bot&permissions=247880)
+It's a silly little fluxer bot for silly little things like hugging and some silly deltarune joke stuff like flowery voice clips and deltarots etc.
 
 
 ## Deploying
@@ -8,21 +7,16 @@ This bot is built to run on [Render](https://render.com) (free tier works fine, 
 
 ### 1. Fork/clone this repo
 
-### 2. Create a Postgres database
-- On Render: **New → PostgreSQL**
-- Copy the **Internal Database URL** it gives you
-
-### 3. Create a Web Service on Render
+### 2. Create a Web Service on Render
 - **New → Web Service**, connect this repo
 - **Build Command:** `pip install -r requirements.txt`
 - **Start Command:** `python main.py`
 
-### 4. Set environment variables
+### 3. Set environment variables
 In the service's **Environment** tab:
 | Key | Value |
 |---|---|
-| `TOKEN` | Your Fluxer bot token |
-| `DATABASE_URL` | The Postgres URL from step 2 |
+| `DISCORD_TOKEN` | Your Fluxer bot token |
 
 ### 5. Deploy
 Render will auto-build and start the bot. Check the **Logs** tab for:
@@ -33,8 +27,7 @@ Bot is online! Logged in as <your bot's username>
 pip install -r requirements.txt
 
 Create a `.env` file:
-TOKEN=your_bot_token
-DATABASE_URL=your_postgres_url
+DISCORD_TOKEN=your_bot_token
 
 Then:
 python main.py
