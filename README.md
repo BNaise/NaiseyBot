@@ -1,4 +1,4 @@
-It's a silly little fluxer bot for silly little things like hugging and some silly deltarune joke stuff like flowery voice clips and deltarots etc.
+It's a silly little Discord bot for silly little things like hugging and some silly deltarune joke stuff like flowery voice clips and deltarots etc.
 
 
 ## Deploying
