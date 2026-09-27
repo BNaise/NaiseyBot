@@ -16,7 +16,7 @@ This bot is built to run on [Render](https://render.com) (free tier works fine, 
 In the service's **Environment** tab:
 | Key | Value |
 |---|---|
-| `DISCORD_TOKEN` | Your Fluxer bot token |
+| `DISCORD_TOKEN` | Your Discord bot token |
 
 ### 5. Deploy
 Render will auto-build and start the bot. Check the **Logs** tab for:
