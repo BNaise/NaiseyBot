@@ -395,11 +395,61 @@ async def cheekkiss(interaction: discord.Interaction, who: str):
 
 flowery_folder = "files/audio/flowery_voice_clips/"
 
+class FloweryListView(discord.ui.View):
+    def __init__(self, pages: list[str], author_id: int):
+        super().__init__(timeout=120)
+        self.pages = pages
+        self.index = 0
+        self.author_id = author_id
+        self._update_buttons()
+
+    def _update_buttons(self):
+        self.previous_button.disabled = self.index == 0
+        self.next_button.disabled = self.index == len(self.pages) - 1
+
+    def make_embed(self):
+        return discord.Embed(
+            title=f"Flowery clips (page {self.index + 1}/{len(self.pages)})",
+            description=self.pages[self.index],
+            color=0x52F0EF,
+        )
+
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if interaction.user.id != self.author_id:
+            await interaction.response.send_message("This isn't your list to page through!", ephemeral=True)
+            return False
+        return True
+
+    @discord.ui.button(label="◀ Previous", style=discord.ButtonStyle.secondary)
+    async def previous_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        self.index -= 1
+        self._update_buttons()
+        await interaction.response.edit_message(embed=self.make_embed(), view=self)
+
+    @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary)
+    async def next_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        self.index += 1
+        self._update_buttons()
+        await interaction.response.edit_message(embed=self.make_embed(), view=self)
+
+def chuck_file_list(files: list[str], limit: int = 4000) -> list[str]:
+    lines = [f"- `{f}`" for f in sorted(files)]
+    chucks = []
+    current = ""
+    for line in lines:
+        if len(current) + len(line) + 1 > limit:
+            chucks.append(current)
+            current = ""
+        current += line + "\n"
+    if current:
+        chucks.append(current)
+    return chucks
+
 @bot.tree.command(name="flowery", description="Flowery voice clips :3")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(filename="A specific file or voice clip (type \"list\" for list of files)")
-async def say_hello(interaction: discord.Interaction, filename: str = None):
+async def flowery(interaction: discord.Interaction, filename: str = None):
     files = os.listdir(flowery_folder)
 
     if not files:
@@ -407,12 +457,9 @@ async def say_hello(interaction: discord.Interaction, filename: str = None):
         return
 
     if filename and filename.lower() == "list":
-        embed = discord.Embed(
-            title="Flowery clips",
-            description="\n".join(f"- `{f}`" for f in sorted(files)),
-            color=0x52F0EF,
-        )
-        await interaction.response.send_message(embed=embed)
+        pages = chuck_file_list(files)
+        view = FloweryListView(pages, interaction.user.id)
+        await interaction.response.send_message(embed=view.make_embed(), view=view)
         return
 
     if filename:
