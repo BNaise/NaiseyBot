@@ -5,6 +5,9 @@ import re
 import math
 import cmath
 
+MAX_EXPONENT = 1000
+MAX_RESULT_DIGITS = 1000
+
 def calculate(expr):
     if expr.strip().lower() == "list":
         return "\n".join([
@@ -31,6 +34,9 @@ def calculate(expr):
     expr = expr.replace('x', '*').replace('X', '*').replace('^', '**')
     if not re.fullmatch(r'[\d+\-*/().\s^a-zA-Z,]+', expr):
         raise ValueError("Invalid characters in expression")
+    for base, exp in re.findall(r'(\d+)\s*\*\*\s*(\d+)', expr):
+        if int(exp) > MAX_EXPONENT:
+            raise ValueError(f"Exponent too large (max {MAX_EXPONENT})")
     allowed_names = {
         "sqrt": cmath.sqrt,
         # radians (standard)
@@ -72,7 +78,13 @@ def calculate(expr):
         "deg": lambda x: x * 180 / cmath.pi,
         "rad": lambda x: x * cmath.pi / 180,
     }
-    return eval(expr, {"__builtins__": {}}, allowed_names)
+    result = eval(expr, {"__builtins__": {}}, allowed_names)
+
+    if isinstance(result, (int, float, complex)):
+        if len(str(result)) > MAX_RESULT_DIGITS:
+            raise ValueError(f"Result too large (max {MAX_RESULT_DIGITS})")
+
+    return result
 
 app = Flask('')
 
