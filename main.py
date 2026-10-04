@@ -10,6 +10,9 @@ import funcs
 
 load_dotenv()
 
+debug = False
+# debug = True
+
 # Emoji's
 kralsei_hug = "<:kralsei_hug:1534290578974445780>"
 kralsei_hug_blushing = "<:kralsei_hug_blushing:1534290631114096690>"
@@ -481,6 +484,8 @@ async def flowery(interaction: discord.Interaction, filename: str = None):
 
     await interaction.response.send_message(file=discord.File(path, filename=choice))
 
-funcs.keep_alive()
-
-bot.run(os.getenv('DISCORD_TOKEN'))
+if not debug:
+    funcs.keep_alive()
+    bot.run(os.getenv('DISCORD_TOKEN'))
+else:
+    bot.run(os.getenv('DISCORD_TOKEN2'))
