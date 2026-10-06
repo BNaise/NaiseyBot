@@ -451,8 +451,9 @@ def chuck_file_list(files: list[str], limit: int = 4000) -> list[str]:
 @bot.tree.command(name="flowery", description="Flowery voice clips :3")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(filename="A specific file or voice clip (type \"list\" for list of files)")
-async def flowery(interaction: discord.Interaction, filename: str = None):
+@app_commands.describe(filename="A specific file or voice clip (type \"list\" or \"ls\" for list of files)")
+@app_commands.describe(grep="Input text and get a list of files matching the text")
+async def flowery(interaction: discord.Interaction, filename: str = None, grep: str = None):
     files = os.listdir(flowery_folder)
 
     if not files:
@@ -463,6 +464,33 @@ async def flowery(interaction: discord.Interaction, filename: str = None):
         pages = chuck_file_list(files)
         view = FloweryListView(pages, interaction.user.id)
         await interaction.response.send_message(embed=view.make_embed(), view=view)
+        return
+    elif filename and filename.lower() == "ls":
+        pages = chuck_file_list(files)
+        view = FloweryListView(pages, interaction.user.id)
+        await interaction.response.send_message(embed=view.make_embed(), view=view)
+        return
+
+    if grep:
+        found = [f for f in sorted(files) if grep in f.lower()]
+
+        if not found:
+            await interaction.response.send_message(f"No clips matching `{grep}`.")
+            return
+
+        embed = discord.Embed(
+            title=f"Flowery clips matching \"{grep}\"",
+            description="\n".join(f"- {f}" for f in found),
+            color=0x52F0EF,
+        )
+
+        if len(found) <= 15:
+            await interaction.response.send_message(embed=embed)
+        else:
+            try:
+                await interaction.response.send_message(embed=embed)
+            except Exception:
+                await interaction.response.send_message("Try a more specific search.")
         return
 
     if filename:
@@ -481,6 +509,86 @@ async def flowery(interaction: discord.Interaction, filename: str = None):
         choice = random.choice(files)
 
     path = os.path.join(flowery_folder, choice)
+
+    await interaction.response.send_message(file=discord.File(path, filename=choice))
+
+kawkaw_folder = "files/audio/kawkaw_voice_clips/"
+
+@bot.tree.command(name="kawkaw", description="Kawkaw voice clips :3")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(filename="A specific file or voice clip (type \"list\" for list of files)")
+async def kawkaw(interaction: discord.Interaction, filename: str = None):
+    files = os.listdir(kawkaw_folder)
+    if not files:
+        await interaction.response.send_message("No files in the folder!")
+        return
+
+    if filename and filename.lower() == "list":
+        embed = discord.Embed(
+            title="Kawkaw :3",
+            description="\n".join(f"- {f}" for f in sorted(files)),
+            color=0x52F0EF,
+        )
+
+        await interaction.response.send_message(embed=embed)
+        return
+
+    elif filename and filename.lower() == "ls":
+        embed = discord.Embed(
+            title="Kawkaw :3",
+            description="\n".join(f"- {f}" for f in sorted(files)),
+            color=0x52F0EF,
+        )
+
+        await interaction.response.send_message(embed=embed)
+        return
+
+    if filename:
+        parts = filename.split(maxsplit=1)
+        if parts and parts[0].lower() == "grep":
+            if len(parts) < 2:
+                await interaction.response.send_message("Usage: `kawkaw grep <text>`")
+                return
+
+            query = parts[1].lower()
+            found = [f for f in sorted(files) if query in f.lower()]
+
+            if not found:
+                await interaction.response.send_message(f"No clips matching `{parts[1]}`.")
+                return
+
+            embed = discord.Embed(
+                title=f"Kawkaw clips matching \"{parts[1]}\"",
+                description="\n".join(f"- {f}" for f in found),
+                color=0x52F0EF,
+            )
+
+            if len(found) <= 15:
+                await interaction.response.send_message(embed=embed)
+            else:
+                try:
+                    await interaction.response.send_message(embed=embed)
+                except Exception:
+                    await interaction.response.send_message("Try a more specific search.")
+            return
+
+    if filename:
+        search = filename.lower()
+        matches = [
+            f for f in files
+            if f.lower() == search or os.path.splitext(f)[0].lower() == search
+        ]
+
+        if not matches:
+            await interaction.response.send_message(f"Couldn't find `{filename}` in the folder.")
+            return
+
+        choice = matches[0]
+    else:
+        choice = random.choice(files)
+
+    path = os.path.join(kawkaw_folder, choice)
 
     await interaction.response.send_message(file=discord.File(path, filename=choice))
 
