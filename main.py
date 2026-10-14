@@ -1,5 +1,6 @@
 import os
 import random
+import re
 
 import discord
 from discord.ext import commands
@@ -127,6 +128,43 @@ async def huger(interaction: discord.Interaction, who: str):
     else:
         await interaction.response.send_message(choice)
 
+@bot.tree.command(name="cuddle", description="Send cuddles! ^^")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(who="Who wants the cuddlesss? ^^")
+async def cuddler(interaction: discord.Interaction, who: str):
+
+    target = who
+    user = interaction.user.mention
+
+    mentions = re.findall(r"<@!?(\d+)>", who)
+
+    if len(mentions) < 2:
+        messages = \
+        [
+            f"{user} is cuddling {target}. Awwwww :3",
+            f"{user} and {target} are now cuddling! :3",
+            f"{user} gives {target} a warm cuddle! :3",
+            f"{user} and {target} are wrapped up in a cuddle! :3",
+            f"{user} and {target} are having a cuddle session! :3",
+            f"{user} and {target} are snuggled up together! :3",
+            f"{user} has cuddles {target} into oblivion :3",
+            f"{target} got absolutely loved and cuddled by {user} :3"
+        ]
+    elif len(mentions) >= 2:
+        messages = \
+        [
+            f"{user} gives {target} a warm cuddle! :3",
+            f"{user} has cuddled {target} into oblivion :3",
+            f"{target} got absolutely loved and cuddled by {user} :3"
+        ]
+
+    choice = random.choice(messages)
+
+    if target == user:
+        await interaction.response.send_message(f"{user} cuddled themselves? how? {ralsei_shocked}")
+    else:
+        await interaction.response.send_message(choice)
 
 @bot.tree.command(name="praise", description="Praises the targeted person")
 @app_commands.allowed_installs(guilds=True, users=True)
@@ -138,17 +176,28 @@ async def praiser(interaction: discord.Interaction, who: str):
 
     user = interaction.user.mention
 
+    mentions = re.findall(r"<@!?(\d+)>", who)
+
+    is_or_are = "is"
+    isnt = "isn't"
+    more = " "
+
+    if len(mentions) >= 2:
+        is_or_are = "are"
+        isnt = "aren't"
+        more = " guys "
+
     messages = \
-    [
-        f"Hehe ^^\n{target} is such a cutie! ^^ {ralsei_happy}",
-        f"Awwwww :3\n{target} is soooo cute! :33 {ralsei_cute}",
-        f"{target}! you are so adorable! :3 {ralsei_cute}",
-        f"{target}! you are sooo awesome! :3 {ralsei_happy}",
-        f"Awwwww! :3 isn't {target} sooooo cute? {ralsei_happy}",
-        f"{target} is so cute! :3 {ralsei_cute}",
-        f"{target} is so cute that I can hug them endlessly! {ralsei_happy}",
-        f"{target} is such a cutie patooti :3 {ralsei_happy}"
-    ]
+        [
+            f"Hehe ^^\n{target} {is_or_are} such a cutie! ^^",
+            f"Awwwww :3\n{target} {is_or_are} soooo cute! :33 ",
+            f"{target}! you{more}are so adorable! :3 ",
+            f"{target}! you{more}are sooo awesome! :3 ",
+            f"Awwwww! :3 {isnt} {target} sooooo cute? ^?^",
+            f"{target} {is_or_are} so cute! :3 >w<",
+            f"{target} {is_or_are} so cute that I can hug them endlessly! ^w^",
+            f"{target} {is_or_are} such a cutie patooti :3 ^~^"
+        ]
 
     choice = random.choice(messages)
 
