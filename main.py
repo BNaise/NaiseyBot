@@ -237,12 +237,33 @@ async def deltarot(interaction: discord.Interaction):
         "Hey undyne!\nHow many human souls do we need to break the barrier?",
         f"{gaster_dance}",
         f"{friend_inside_me}",
-        f"CHAOS CHAOS! {jevil_dance}"
+        f"CHAOS CHAOS! {jevil_dance},
+        "Hey there little guy!",
+        "Heh its my jarona!",
+        "He is in some king of snowgrave.",
+        "*_Swoon_",
+        "I'm the Roaring Knight! and am a fraud!",
+        "*You looked behind the tree",
+        "*Well there is a man here",
+        "*And he is offering you a egg",
+        "*Susie's idea",
+        "WD.Gaster in deltarune build it all from a empty room.",
+        "Its 12:25 outside.",
+        "Well this stinks.",
+        "I'm Old!",
+        "I'm fOld!",
+        "What do you do with a drunken gonner!\n What do you do with a drunken gonner!\nWhat do you do with a drunken gonner!\nEarly in the Roaring!",
+        "PINK AND YELLOW?!?! 🩷=💛",
+        "*Why wold Chara do this?!?!",
+        "I am Frisk."
     ]
 
     choice = random.choice(deltarots)
 
     if choice == "Hey undyne!\nHow many human souls do we need to break the barrier?":
+        file = discord.File("files/undyne-seven.webp")
+        await interaction.response.send_message(choice, file=file)
+    elif choice == "*Why wold Chara do this?!?!":
         file = discord.File("files/undyne-seven.webp")
         await interaction.response.send_message(choice, file=file)
     else:
