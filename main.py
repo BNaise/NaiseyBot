@@ -264,7 +264,7 @@ async def deltarot(interaction: discord.Interaction):
         file = discord.File("files/undyne-seven.webp")
         await interaction.response.send_message(choice, file=file)
     elif choice == "*Why wold Chara do this?!?!":
-        file = discord.File("files/undyne-seven.webp")
+        file = discord.File("files/Chara_What_Me.png")
         await interaction.response.send_message(choice, file=file)
     else:
         await interaction.response.send_message(choice)
