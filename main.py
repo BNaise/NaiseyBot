@@ -237,7 +237,7 @@ async def deltarot(interaction: discord.Interaction):
         "Hey undyne!\nHow many human souls do we need to break the barrier?",
         f"{gaster_dance}",
         f"{friend_inside_me}",
-        f"CHAOS CHAOS! {jevil_dance},
+        f"CHAOS CHAOS! {jevil_dance}",
         "Hey there little guy!",
         "Heh its my jarona!",
         "He is in some king of snowgrave.",
