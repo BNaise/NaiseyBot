@@ -642,7 +642,7 @@ async def kawkaw(interaction: discord.Interaction, filename: str = None):
     await interaction.response.send_message(file=discord.File(path, filename=choice))
 
 if not debug:
-    funcs.keep_alive()
+    # funcs.keep_alive()
     bot.run(os.getenv('DISCORD_TOKEN'))
 else:
     bot.run(os.getenv('DISCORD_TOKEN2'))
