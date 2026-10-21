@@ -7,7 +7,7 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
-from functions import calculator
+import funcs
 
 load_dotenv()
 
@@ -237,13 +237,34 @@ async def deltarot(interaction: discord.Interaction):
         "Hey undyne!\nHow many human souls do we need to break the barrier?",
         f"{gaster_dance}",
         f"{friend_inside_me}",
-        f"CHAOS CHAOS! {jevil_dance}"
+        f"CHAOS CHAOS! {jevil_dance}",
+        "Hey there little guy!",
+        "Heh its my jarona!",
+        "He is in some king of snowgrave.",
+        "*_Swoon_",
+        "I'm the Roaring Knight! and am a fraud!",
+        "*You looked behind the tree",
+        "*Well there is a man here",
+        "*And he is offering you a egg",
+        "*Susie's idea",
+        "WD.Gaster in deltarune build it all from a empty room.",
+        "Its 12:25 outside.",
+        "Well this stinks.",
+        "I'm Old!",
+        "I'm fOld!",
+        "What do you do with a drunken gonner!\n What do you do with a drunken gonner!\nWhat do you do with a drunken gonner!\nEarly in the Roaring!",
+        "PINK AND YELLOW?!?! 🩷=💛",
+        "*Why wold Chara do this?!?!",
+        "I am Frisk."
     ]
 
     choice = random.choice(deltarots)
 
     if choice == "Hey undyne!\nHow many human souls do we need to break the barrier?":
         file = discord.File("files/undyne-seven.webp")
+        await interaction.response.send_message(choice, file=file)
+    elif choice == "*Why wold Chara do this?!?!":
+        file = discord.File("files/Chara_What_Me.png")
         await interaction.response.send_message(choice, file=file)
     else:
         await interaction.response.send_message(choice)
@@ -353,10 +374,10 @@ async def hug_everyone(interaction: discord.Interaction):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(equation="Type \"list\" to get a list of functions")
-async def calculate(interaction: discord.Interaction, equation: str):
+async def calculator(interaction: discord.Interaction, equation: str):
 
     bruh = ""
-    result = calculator.calculate(equation)
+    result = funcs.calculate(equation)
 
     if result == 67:
         bruh = " (Seriously bruh? -_-)"
@@ -642,6 +663,7 @@ async def kawkaw(interaction: discord.Interaction, filename: str = None):
     await interaction.response.send_message(file=discord.File(path, filename=choice))
 
 if not debug:
+    # funcs.keep_alive()
     bot.run(os.getenv('DISCORD_TOKEN'))
 else:
     bot.run(os.getenv('DISCORD_TOKEN2'))
