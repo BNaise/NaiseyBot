@@ -7,7 +7,7 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
-import funcs
+from functions import calculator
 
 load_dotenv()
 
@@ -374,10 +374,10 @@ async def hug_everyone(interaction: discord.Interaction):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(equation="Type \"list\" to get a list of functions")
-async def calculator(interaction: discord.Interaction, equation: str):
+async def calculate(interaction: discord.Interaction, equation: str):
 
     bruh = ""
-    result = funcs.calculate(equation)
+    result = calculator.calculate(equation)
 
     if result == 67:
         bruh = " (Seriously bruh? -_-)"
