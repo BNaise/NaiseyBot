@@ -1,6 +1,3 @@
-from flask import Flask
-from threading import Thread
-
 import re
 import math
 import cmath
@@ -85,16 +82,3 @@ def calculate(expr):
             raise ValueError(f"Result too large (max {MAX_RESULT_DIGITS})")
 
     return result
-
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "Bot is running!"
-
-def run():
-    app.run(host='0.0.0.0', port=8000)
-
-def keep_alive():
-    t = Thread(target=run)
-    t.start()
