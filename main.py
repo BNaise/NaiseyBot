@@ -67,12 +67,15 @@ async def on_ready():
     #                              f"Before: {before.content}\n"
     #                              f"After: {after.content}")
 
+
+# ------------ Commands ------------
+
+# ------ General ------
 @bot.tree.command(name="hello", description="Say hello")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def say_hello(interaction: discord.Interaction):
     await interaction.response.send_message(f"Hi there! ^^ {ralsei_happy}")
-
 
 @bot.tree.command(name="printer", description="Prints what you say")
 @app_commands.allowed_installs(guilds=True, users=True)
@@ -80,7 +83,6 @@ async def say_hello(interaction: discord.Interaction):
 @app_commands.describe(printer="Type whatever you want to print :3")
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
-
 
 @bot.tree.command(name="support", description="Support my creator! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
@@ -91,7 +93,7 @@ async def embeder(interaction: discord.Interaction):
     embed.set_author(name="B. Naise", url="https://www.youtube.com/@b_naise", icon_url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
     await interaction.response.send_message(embed=embed)
 
-
+# ------ Affection ------
 @bot.tree.command(name="hug", description="Send hugs! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
@@ -206,7 +208,110 @@ async def praiser(interaction: discord.Interaction, who: str):
     else:
         await interaction.response.send_message(choice)
 
+@bot.tree.command(name="permahug", description="Permanently hug someone ^^")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(who="Who wants to be perma hugged ^?^")
+async def perma_huger(interaction: discord.Interaction, who: str):
 
+    target = who
+    user = interaction.user.mention
+
+    messages = \
+    [
+        f"{user} permanently hugs {target} {kralsei_hug}{kralsei_hug_blushing}",
+        f"{user} hugs {target} permanently {kralsei_hug_blushing}",
+        f"{user} hugs {target} and they won't let go, ever {kralsei_hug_blushing}",
+        f"{user} hugs {target} and never let's go until the end of time and beyond {kralsei_hug_blushing}",
+        f"{user} has trapped {target} with an eternal hug {kralsei_hug}"
+    ]
+
+    choice = random.choice(messages)
+
+    if user == target:
+        await interaction.response.send_message(f"{user} you can't just do that!")
+    else:
+        await interaction.response.send_message(choice)
+
+@bot.tree.command(name="hugeveryone", description="Hugs everyone ^^")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+async def hug_everyone(interaction: discord.Interaction):
+
+    user = interaction.user.mention
+
+    messages = \
+    [
+        f"{user} tightly hugs @everyone :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
+        f"Hey @everyone! {user} just sent you guys a ton of hugs! ^^ {ralsei_heart}{kralsei_hug_blushing}{ralsei_happy}",
+        f"{user} gives @everyone a big warm hug! {vulkin_happy}{kralsei_hug}",
+        f"{user} wraps their arms around @everyone! {kralsei_hug_blushing}",
+        f"{user} gives @everyone a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}{ralsei_heart}",
+        f"{user} hugs @everyone with all their might! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} pulls @everyone into a cozy hug! {kralsei_hug_blushing}",
+        f"{user} gives @everyone a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} hugs @everyone. Awwww! {ralsei_happy}{kralsei_hug}{ralsei_heart}",
+        f"HUG DETECTED! {user} has hugged @everyone! {kralsei_hug}",
+        f"{user} and @everyone are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
+        f"{user} sends a hug directly to @everyone's soul. {kralsei_hug_blushing}{ralsei_heart}",
+        f"{user} hugs @everyone. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
+    ]
+
+    choice = random.choice(messages)
+
+    await interaction.response.send_message(choice)
+
+@bot.tree.command(name="kiss", description="Kiss :3")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(who="Who to kiss? :3")
+async def kiss(interaction: discord.Interaction, who: str):
+    user = interaction.user.mention
+
+    target = who
+
+    messages = \
+        [
+            f"{user} kissed {target}! They're so cute! {ralsei_happy}",
+            f"OMG- GUYS- {user} JUST KISSED {target}!!!! {ralsei_cute}",
+            f"{user} **VIOLENTLY** pulled {target} to them and **SMOOCHED** them on the **LIPS**, not letting **ANYONE ELSE** in {ralsei_cute_evil}",
+            f"Hehehehe, {user} gave {target} a little smooooch! {ralsei_happy}"
+        ]
+
+    choice = random.choice(messages)
+
+    if target == user:
+        await interaction.response.send_message(f"{user} kissed themselves? ...how? {ralsei_shocked}")
+    elif who:
+        await interaction.response.send_message(choice)
+
+@bot.tree.command(name="cheekkiss", description="Cheek kiss :3")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(who="Who to cheek kiss? :3")
+async def cheekkiss(interaction: discord.Interaction, who: str):
+    user = interaction.user.mention
+
+    target = who
+
+    messages = \
+        [
+            f"{user} gave {target} a cute kiss on the cheek! Awwhh! :3 {ralsei_happy}",
+            f"{user} gave {target} a little cheek smooch! ^^ {ralsei_happy}",
+            f"{user} not so violently pulled {target} to them and pekced them on the cheek, letting everyone else in ^w^ {ralsei_happy}",
+            f"Hey guys, {user} gave {target} a little cheek smooch!!! :3 {ralsei_cute}",
+            f"Hehehe {user} is so cute, they just kissed {target} on the cheek ^^ {ralsei_cute}",
+            f"Hehehe- {user} gave {target} a peck on the cheek!!!! :3 {ralsei_heart}"
+        ]
+
+    choice = random.choice(messages)
+
+    if target == user:
+        await interaction.response.send_message(f"{user} kissed themselves on the cheek? ...how? {ralsei_shocked}")
+    elif who:
+        await interaction.response.send_message(choice)
+
+# ------ Funny ------
 @bot.tree.command(name="deltarot", description="Says Deltarots")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
@@ -269,7 +374,6 @@ async def deltarot(interaction: discord.Interaction):
     else:
         await interaction.response.send_message(choice)
 
-
 @bot.tree.command(name="gamble", description="Let's go gambling!")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
@@ -280,7 +384,6 @@ async def gamble(interaction: discord.Interaction):
         "Aww dang it!"
     ]
     await interaction.response.send_message(random.choice(gamble))
-
 
 @bot.tree.command(name="silly", description="Silly :P")
 @app_commands.allowed_installs(guilds=True, users=True)
@@ -317,154 +420,12 @@ async def silliness(interaction: discord.Interaction, who: str = None):
 
     await interaction.response.send_message(choice)
 
-@bot.tree.command(name="permahug", description="Permanently hug someone ^^")
-@app_commands.allowed_installs(guilds=True, users=True)
-@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(who="Who wants to be perma hugged ^?^")
-async def perma_huger(interaction: discord.Interaction, who: str):
-
-    target = who
-    user = interaction.user.mention
-
-    messages = \
-    [
-        f"{user} permanently hugs {target} {kralsei_hug}{kralsei_hug_blushing}",
-        f"{user} hugs {target} permanently {kralsei_hug_blushing}",
-        f"{user} hugs {target} and they won't let go, ever {kralsei_hug_blushing}",
-        f"{user} hugs {target} and never let's go until the end of time and beyond {kralsei_hug_blushing}",
-        f"{user} has trapped {target} with an eternal hug {kralsei_hug}"
-    ]
-
-    choice = random.choice(messages)
-
-    if user == target:
-        await interaction.response.send_message(f"{user} you can't just do that!")
-    else:
-        await interaction.response.send_message(choice)
-
-@bot.tree.command(name="hugeveryone", description="Hugs everyone ^^")
-@app_commands.allowed_installs(guilds=True, users=True)
-@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def hug_everyone(interaction: discord.Interaction):
-
-    user = interaction.user.mention
-
-    messages = \
-    [
-        f"{user} tightly hugs @everyone :people_hugging:{kralsei_hug}{kralsei_hug_blushing}",
-        f"Hey @everyone! {user} just sent you guys a ton of hugs! ^^ {ralsei_heart}{kralsei_hug_blushing}{ralsei_happy}",
-        f"{user} gives @everyone a big warm hug! {vulkin_happy}{kralsei_hug}",
-        f"{user} wraps their arms around @everyone! {kralsei_hug_blushing}",
-        f"{user} gives @everyone a much-needed hug! {kralsei_hug_blushing}{ralsei_happy}{ralsei_heart}",
-        f"{user} hugs @everyone with all their might! {ralsei_happy}{kralsei_hug_blushing}",
-        f"{user} pulls @everyone into a cozy hug! {kralsei_hug_blushing}",
-        f"{user} gives @everyone a wholesome hug! {ralsei_happy}{kralsei_hug_blushing}",
-        f"{user} hugs @everyone. Awwww! {ralsei_happy}{kralsei_hug}{ralsei_heart}",
-        f"HUG DETECTED! {user} has hugged @everyone! {kralsei_hug}",
-        f"{user} and @everyone are temporarily trapped in a hug. {ralsei_happy}{kralsei_hug_blushing}",
-        f"{user} sends a hug directly to @everyone's soul. {kralsei_hug_blushing}{ralsei_heart}",
-        f"{user} hugs @everyone. No escape. {ralsei_cute_evil}{kralsei_hug_blushing}"
-    ]
-
-    choice = random.choice(messages)
-
-    await interaction.response.send_message(choice)
-
-@bot.tree.command(name="calculate", description="Type equations to calculate")
-@app_commands.allowed_installs(guilds=True, users=True)
-@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(equation="Type \"list\" to get a list of functions")
-async def calculate(interaction: discord.Interaction, equation: str):
-
-    bruh = ""
-    result = calculator.calculate(equation)
-
-    if result == 67:
-        bruh = " (Seriously bruh? -_-)"
-    elif result == 69:
-        bruh = " (Seriously bruh? -_-)"
-
-    if equation == "9+10":
-        await interaction.response.send_message(f"{equation} =\n21")
-    elif equation == "9 + 10":
-        await interaction.response.send_message(f"{equation} =\n21")
-    else:
-        try:
-          await interaction.response.send_message(f"{equation} =\n{result}{bruh}")
-        except Exception as e:
-          await interaction.response.send_message(f"Error: {e}")
-
 @bot.tree.command(name="bored", description="Bored -_-")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def say_hello(interaction: discord.Interaction):
+async def bored(interaction: discord.Interaction):
     file = discord.File("files/bernii_bored.gif")
     await interaction.response.send_message(file=file)
-
-@bot.tree.command(name="roll", description="Rolls a random number between the Starting number and Finishing number")
-@app_commands.allowed_installs(guilds=True, users=True)
-@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(start="Enter starting number (default is 1)")
-@app_commands.describe(finish="Enter finishing number")
-async def roll(interaction: discord.Interaction, finish: int, start: int = 1):
-    if finish:
-        if finish >= start:
-            random_number = random.randint(start, finish)
-            await interaction.response.send_message(str(random_number))
-        elif finish < start:
-            await interaction.response.send_message("Finishing number should be bigger then starting number.")
-    else:
-        await interaction.response.send_message("Please enter a number")
-
-@bot.tree.command(name="kiss", description="Kiss :3")
-@app_commands.allowed_installs(guilds=True, users=True)
-@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(who="Who to kiss? :3")
-async def kiss(interaction: discord.Interaction, who: str):
-    user = interaction.user.mention
-
-    target = who
-
-    messages = \
-        [
-            f"{user} kissed {target}! They're so cute! {ralsei_happy}",
-            f"OMG- GUYS- {user} JUST KISSED {target}!!!! {ralsei_cute}",
-            f"{user} **VIOLENTLY** pulled {target} to them and **SMOOCHED** them on the **LIPS**, not letting **ANYONE ELSE** in {ralsei_cute_evil}",
-            f"Hehehehe, {user} gave {target} a little smooooch! {ralsei_happy}"
-        ]
-
-    choice = random.choice(messages)
-
-    if target == user:
-        await interaction.response.send_message(f"{user} kissed themselves? ...how? {ralsei_shocked}")
-    elif who:
-        await interaction.response.send_message(choice)
-
-@bot.tree.command(name="cheekkiss", description="Cheek kiss :3")
-@app_commands.allowed_installs(guilds=True, users=True)
-@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@app_commands.describe(who="Who to cheek kiss? :3")
-async def cheekkiss(interaction: discord.Interaction, who: str):
-    user = interaction.user.mention
-
-    target = who
-
-    messages = \
-        [
-            f"{user} gave {target} a cute kiss on the cheek! Awwhh! :3 {ralsei_happy}",
-            f"{user} gave {target} a little cheek smooch! ^^ {ralsei_happy}",
-            f"{user} not so violently pulled {target} to them and pekced them on the cheek, letting everyone else in ^w^ {ralsei_happy}",
-            f"Hey guys, {user} gave {target} a little cheek smooch!!! :3 {ralsei_cute}",
-            f"Hehehe {user} is so cute, they just kissed {target} on the cheek ^^ {ralsei_cute}",
-            f"Hehehe- {user} gave {target} a peck on the cheek!!!! :3 {ralsei_heart}"
-        ]
-
-    choice = random.choice(messages)
-
-    if target == user:
-        await interaction.response.send_message(f"{user} kissed themselves on the cheek? ...how? {ralsei_shocked}")
-    elif who:
-        await interaction.response.send_message(choice)
 
 flowery_folder = "files/audio/flowery_voice_clips/"
 
@@ -582,13 +543,12 @@ async def flowery(interaction: discord.Interaction, filename: str = None, grep: 
 
     await interaction.response.send_message(file=discord.File(path, filename=choice))
 
-kawkaw_folder = "files/audio/kawkaw_voice_clips/"
-
 @bot.tree.command(name="kawkaw", description="Kawkaw voice clips :3")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @app_commands.describe(filename="A specific file or voice clip (type \"list\" for list of files)")
 async def kawkaw(interaction: discord.Interaction, filename: str = None):
+    kawkaw_folder = "files/audio/kawkaw_voice_clips/"
     files = os.listdir(kawkaw_folder)
     if not files:
         await interaction.response.send_message("No files in the folder!")
@@ -661,6 +621,46 @@ async def kawkaw(interaction: discord.Interaction, filename: str = None):
     path = os.path.join(kawkaw_folder, choice)
 
     await interaction.response.send_message(file=discord.File(path, filename=choice))
+
+# ------ Useful ------
+@bot.tree.command(name="calculate", description="Type equations to calculate")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(equation="Type \"list\" to get a list of functions")
+async def calculate(interaction: discord.Interaction, equation: str):
+
+    bruh = ""
+    result = calculator.calculate(equation)
+
+    if result == 67:
+        bruh = " (Seriously bruh? -_-)"
+    elif result == 69:
+        bruh = " (Seriously bruh? -_-)"
+
+    if equation == "9+10":
+        await interaction.response.send_message(f"{equation} =\n21")
+    elif equation == "9 + 10":
+        await interaction.response.send_message(f"{equation} =\n21")
+    else:
+        try:
+          await interaction.response.send_message(f"{equation} =\n{result}{bruh}")
+        except Exception as e:
+          await interaction.response.send_message(f"Error: {e}")
+
+@bot.tree.command(name="roll", description="Rolls a random number between the Starting number and Finishing number")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+@app_commands.describe(start="Enter starting number (default is 1)")
+@app_commands.describe(finish="Enter finishing number")
+async def roll(interaction: discord.Interaction, finish: int, start: int = 1):
+    if finish:
+        if finish >= start:
+            random_number = random.randint(start, finish)
+            await interaction.response.send_message(str(random_number))
+        elif finish < start:
+            await interaction.response.send_message("Finishing number should be bigger then starting number.")
+    else:
+        await interaction.response.send_message("Please enter a number")
 
 if not debug:
     # funcs.keep_alive()
