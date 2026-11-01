@@ -7,7 +7,7 @@ from discord.ext import commands
 from discord import app_commands, Interaction
 from dotenv import load_dotenv
 
-from functions import calculator
+from functions import calculator, keep_alive
 
 load_dotenv()
 
@@ -663,7 +663,7 @@ async def roll(interaction: discord.Interaction, finish: int, start: int = 1):
         await interaction.response.send_message("Please enter a number")
 
 if not debug:
-    # funcs.keep_alive()
+    keep_alive.keep_alive()
     bot.run(os.getenv('DISCORD_TOKEN'))
 else:
     bot.run(os.getenv('DISCORD_TOKEN2'))
