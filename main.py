@@ -93,6 +93,7 @@ async def embeder(interaction: discord.Interaction):
     embed.set_author(name="B. Naise", url="https://www.youtube.com/@b_naise", icon_url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
     await interaction.response.send_message(embed=embed)
 
+
 # ------ Affection ------
 @bot.tree.command(name="hug", description="Send hugs! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
@@ -310,6 +311,7 @@ async def cheekkiss(interaction: discord.Interaction, who: str):
         await interaction.response.send_message(f"{user} kissed themselves on the cheek? ...how? {ralsei_shocked}")
     elif who:
         await interaction.response.send_message(choice)
+
 
 # ------ Funny ------
 @bot.tree.command(name="deltarot", description="Says Deltarots")
@@ -621,6 +623,7 @@ async def kawkaw(interaction: discord.Interaction, filename: str = None):
     path = os.path.join(kawkaw_folder, choice)
 
     await interaction.response.send_message(file=discord.File(path, filename=choice))
+
 
 # ------ Useful ------
 @bot.tree.command(name="calculate", description="Type equations to calculate")
