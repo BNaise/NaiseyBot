@@ -98,9 +98,9 @@ async def printer(interaction: discord.Interaction, printer: str):
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def embeder(interaction: discord.Interaction):
-    embed = discord.Embed(title="Click here! :P", url="https://www.youtube.com/@b_naise", description="Please subscribe lol :P", color=discord.Color.from_str("#52f0ef"))
+    embed = discord.Embed(title="Click here to see my Linktree :P", url="https://linktr.ee/B_Naise", description="Wawa :3", color=discord.Color.from_str("#52f0ef"))
     embed.set_thumbnail(url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
-    embed.set_author(name="B. Naise", url="https://www.youtube.com/@b_naise", icon_url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
+    embed.set_author(name="B. Naise", url="https://linktr.ee/B_Naise", icon_url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
     await interaction.response.send_message(embed=embed)
 
 
