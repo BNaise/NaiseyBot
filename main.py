@@ -97,10 +97,10 @@ async def printer(interaction: discord.Interaction, printer: str):
 @bot.tree.command(name="support", description="Support my creator! ^^")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def embeder(interaction: discord.Interaction):
+async def support(interaction: discord.Interaction):
     embed = discord.Embed(title="Click here to see my Linktree :P", url="https://linktr.ee/B_Naise", description="Wawa :3", color=discord.Color.from_str("#52f0ef"))
-    embed.set_thumbnail(url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
-    embed.set_author(name="B. Naise", url="https://linktr.ee/B_Naise", icon_url="https://i.ibb.co/LX2MNMGJ/My-new-new-new-pfp-Final-one-Probably.png")
+    embed.set_thumbnail(url="https://i.ibb.co/VkCfJ5G/B-Naise.png")
+    embed.set_author(name="B. Naise", url="https://linktr.ee/B_Naise", icon_url="https://i.ibb.co/VkCfJ5G/B-Naise.png")
     await interaction.response.send_message(embed=embed)
 
 
