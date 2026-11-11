@@ -77,6 +77,16 @@ async def on_ready():
 async def say_hello(interaction: discord.Interaction):
     await interaction.response.send_message(f"Hi there! ^^ {ralsei_happy}")
 
+@bot.tree.command(name="sync", description="Sync slash commands (owner only)")
+async def sync(interaction: discord.Interaction):
+    if not await bot.is_owner(interaction.user):
+        await interaction.response.send_message("Nope, owner only!", ephemeral=True)
+        return
+
+    await interaction.response.defer(ephemeral=True)
+    synced = await bot.tree.sync()
+    await interaction.followup.send(f"Synced {len(synced)} commands")
+
 @bot.tree.command(name="printer", description="Prints what you say")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
