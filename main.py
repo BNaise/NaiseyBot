@@ -49,8 +49,8 @@ bot: commands.Bot = commands.Bot(command_prefix="!", intents=discord.Intents.all
 async def on_ready():
     print(f'Logged on as {bot.user}!')
 
-    await bot.tree.sync()
-    print(f"Synced commands for {bot.user}")
+    # await bot.tree.sync()
+    # print(f"Synced commands for {bot.user}")
 
     # async def on_message(self, message):
     #     if message.author == self.user:
